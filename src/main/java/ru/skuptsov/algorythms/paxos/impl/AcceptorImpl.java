@@ -1,13 +1,13 @@
-package ru.skuptsov.paxos.impl;
+package ru.skuptsov.algorythms.paxos.impl;
 
 import com.google.common.eventbus.AllowConcurrentEvents;
 import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import ru.skuptsov.paxos.Acceptor;
-import ru.skuptsov.paxos.message.AcceptEvent;
-import ru.skuptsov.paxos.message.ProposalEvent;
+import ru.skuptsov.algorythms.paxos.Acceptor;
+import ru.skuptsov.algorythms.paxos.message.AcceptEvent;
+import ru.skuptsov.algorythms.paxos.message.ProposalEvent;
 
 import javax.annotation.PostConstruct;
 

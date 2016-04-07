@@ -1,8 +1,4 @@
-package ru.skuptsov.unionfind.common;
-
-import ru.skuptsov.utils.IOUtils;
-
-import java.io.FileNotFoundException;
+package ru.skuptsov.algorythms.unionfind.common;
 
 /**
  * Created by Сергей on 02.02.2016.

@@ -1,6 +1,6 @@
-package ru.skuptsov.paxos;
+package ru.skuptsov.algorythms.paxos;
 
-import ru.skuptsov.paxos.message.PromiseEvent;
+import ru.skuptsov.algorythms.paxos.message.PromiseEvent;
 
 /**
  * Created by Сергей on 01.03.2016.

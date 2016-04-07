@@ -1,4 +1,4 @@
-package ru.skuptsov.paxos;
+package ru.skuptsov.algorythms.paxos;
 
 import com.google.common.eventbus.EventBus;
 import org.springframework.context.ApplicationContext;

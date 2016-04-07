@@ -1,7 +1,7 @@
-package ru.skuptsov.unionfind;
+package ru.skuptsov.algorythms.unionfind;
 
-import ru.skuptsov.unionfind.common.UnionFind;
-import ru.skuptsov.utils.IOUtils;
+import ru.skuptsov.algorythms.unionfind.common.UnionFind;
+import ru.skuptsov.algorythms.utils.IOUtils;
 
 import java.io.FileNotFoundException;
 
