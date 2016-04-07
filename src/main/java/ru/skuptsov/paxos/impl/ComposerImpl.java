@@ -4,8 +4,6 @@ import com.google.common.eventbus.AllowConcurrentEvents;
 import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
 import com.google.common.util.concurrent.AtomicLongMap;
-import org.joda.time.DateTime;
-import org.joda.time.DateTimeZone;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import ru.skuptsov.paxos.Composer;
@@ -43,7 +41,7 @@ public class ComposerImpl implements Composer {
     }
 
     @PostConstruct
-    public void init(){
+    public void init() {
         eventBus.register(this);
     }
 }
