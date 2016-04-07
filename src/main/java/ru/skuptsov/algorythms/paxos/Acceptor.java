@@ -1,8 +1,7 @@
-package ru.skuptsov.paxos;
+package ru.skuptsov.algorythms.paxos;
 
-import org.springframework.stereotype.Component;
-import ru.skuptsov.paxos.message.AcceptEvent;
-import ru.skuptsov.paxos.message.ProposalEvent;
+import ru.skuptsov.algorythms.paxos.message.ProposalEvent;
+import ru.skuptsov.algorythms.paxos.message.AcceptEvent;
 
 /**
  * Created by Сергей on 01.03.2016.

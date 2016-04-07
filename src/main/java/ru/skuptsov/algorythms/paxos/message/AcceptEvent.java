@@ -1,13 +1,13 @@
-package ru.skuptsov.paxos.message;
+package ru.skuptsov.algorythms.paxos.message;
 
 /**
  * Created by Сергей on 01.03.2016.
  */
-public class ProposalEvent {
+public class AcceptEvent {
 
     private Proposal proposal;
 
-    public ProposalEvent(Proposal proposal) {
+    public AcceptEvent(Proposal proposal) {
         this.proposal = proposal;
     }
 

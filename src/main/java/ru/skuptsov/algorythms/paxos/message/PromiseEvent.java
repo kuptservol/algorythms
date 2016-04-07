@@ -1,4 +1,4 @@
-package ru.skuptsov.paxos.message;
+package ru.skuptsov.algorythms.paxos.message;
 
 /**
  * Created by Сергей on 01.03.2016.

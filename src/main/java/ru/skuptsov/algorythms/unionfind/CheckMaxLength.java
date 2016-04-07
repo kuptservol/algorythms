@@ -1,4 +1,4 @@
-package ru.skuptsov.unionfind;
+package ru.skuptsov.algorythms.unionfind;
 
 import java.util.Arrays;
 

@@ -1,4 +1,4 @@
-package ru.skuptsov.utils;
+package ru.skuptsov.algorythms.utils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
