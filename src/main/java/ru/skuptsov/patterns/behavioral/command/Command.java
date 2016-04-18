@@ -1,4 +1,4 @@
-package ru.skuptsov.patterns.command;
+package ru.skuptsov.patterns.behavioral.command;
 
 /**
  * Created by Сергей on 12.04.2016.

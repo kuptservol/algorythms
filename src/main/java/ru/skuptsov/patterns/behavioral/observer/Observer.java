@@ -1,13 +1,9 @@
-package ru.skuptsov.patterns.observer;
-
-import com.google.common.util.concurrent.MoreExecutors;
+package ru.skuptsov.patterns.behavioral.observer;
 
 import java.util.Observable;
 import java.util.Scanner;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 /**
  * @author Sergey Kuptsov

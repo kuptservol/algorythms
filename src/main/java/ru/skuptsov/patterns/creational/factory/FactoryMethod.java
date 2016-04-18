@@ -1,4 +1,4 @@
-package ru.skuptsov.patterns.factory;
+package ru.skuptsov.patterns.creational.factory;
 
 /**
  * Created by Сергей on 13.04.2016.

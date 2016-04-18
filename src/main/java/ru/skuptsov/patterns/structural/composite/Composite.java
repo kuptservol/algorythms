@@ -1,4 +1,4 @@
-package ru.skuptsov.patterns.composite;
+package ru.skuptsov.patterns.structural.composite;
 
 import java.util.ArrayList;
 import java.util.List;
