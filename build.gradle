@@ -15,5 +15,5 @@ dependencies {
     compile files('lib/algs4.jar')
     compile 'com.google.guava:guava:19.0'
     compile 'joda-time:joda-time:2.9.2'
-
+    compile 'com.lmax:disruptor:3.2.1'
 }
