@@ -17,4 +17,6 @@ public interface Graph<V extends Vertex, E extends Edge> {
     int vNum();
 
     int eNum();
+
+    Iterable<V> vertexes();
 }
