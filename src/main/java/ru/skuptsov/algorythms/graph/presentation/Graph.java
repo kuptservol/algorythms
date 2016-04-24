@@ -1,18 +1,16 @@
 package ru.skuptsov.algorythms.graph.presentation;
 
-import java.util.Iterator;
-
 /**
  * @author Sergey Kuptsov
  * @since 17/04/2016
  */
-public interface Graph<V extends Vertex, E extends Edge> {
+public interface Graph<P, V extends Vertex<P>, E extends Edge<P>> {
 
     void addEdge(E edge);
 
     Iterable<V> vertexFrom(V vertex);
 
-    Iterable<E> edgesFrom(Vertex vertex);
+    Iterable<E> edgesFrom(Vertex<P> vertex);
 
     int vNum();
 

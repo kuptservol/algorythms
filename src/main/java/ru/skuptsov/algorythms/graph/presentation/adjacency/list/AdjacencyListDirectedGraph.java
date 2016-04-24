@@ -16,7 +16,7 @@ import static java.util.stream.Collectors.toList;
  * @author Sergey Kuptsov
  * @since 17/04/2016
  */
-public class AdjacencyListDirectedGraph<E extends Edge, P> extends AbstractGraph<Vertex<P>, E> {
+public class AdjacencyListDirectedGraph<E extends Edge<P>, P> extends AbstractGraph<P, Vertex<P>, E> {
 
     protected Map<Vertex<P>, Set<E>> adj;
     private final Set<Vertex<P>> vertexIndex = new HashSet<>();
@@ -67,7 +67,7 @@ public class AdjacencyListDirectedGraph<E extends Edge, P> extends AbstractGraph
      * @return
      */
     @Override
-    public Iterable<Vertex> vertexFrom(Vertex vertex) {
+    public Iterable<Vertex<P>> vertexFrom(Vertex vertex) {
         return adj.get(vertex).stream().map(Edge::getToV).collect(toList());
     }
 
@@ -78,7 +78,7 @@ public class AdjacencyListDirectedGraph<E extends Edge, P> extends AbstractGraph
      * @return
      */
     @Override
-    public Iterable<E> edgesFrom(Vertex vertex) {
+    public Iterable<E> edgesFrom(Vertex<P> vertex) {
         return adj.get(vertex);
     }
 

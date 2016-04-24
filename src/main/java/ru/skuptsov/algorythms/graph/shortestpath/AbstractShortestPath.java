@@ -11,9 +11,9 @@ import ru.skuptsov.algorythms.graph.presentation.WeightedEdge;
 public abstract class AbstractShortestPath<P> implements ShortestPath {
 
     protected final Vertex<P> fromV;
-    protected final Graph<Vertex<P>, WeightedEdge> graph;
+    protected final Graph<P, Vertex<P>, WeightedEdge<P>> graph;
 
-    public AbstractShortestPath(Graph<Vertex<P>, WeightedEdge> graph, Vertex<P> fromV) {
+    public AbstractShortestPath(Graph<P, Vertex<P>, WeightedEdge<P>> graph, Vertex<P> fromV) {
         this.fromV = fromV;
         this.graph = graph;
     }

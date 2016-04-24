@@ -13,9 +13,9 @@ import java.util.*;
  */
 public class NearestNeighbourTCP<P> {
 
-    private final Graph<Vertex<P>, WeightedEdge<P>> graph;
+    private final Graph<P, Vertex<P>, WeightedEdge<P>> graph;
 
-    public NearestNeighbourTCP(Graph<Vertex<P>, WeightedEdge<P>> graph) {
+    public NearestNeighbourTCP(Graph<P, Vertex<P>, WeightedEdge<P>> graph) {
         this.graph = graph;
     }
 
@@ -56,7 +56,7 @@ public class NearestNeighbourTCP<P> {
 
     public static void main(String[] args) {
 
-        Graph<Vertex<String>, WeightedEdge<String>> graph = new AdjacencyListDirectedGraph<>();
+        Graph<String, Vertex<String>, WeightedEdge<String>> graph = new AdjacencyListDirectedGraph<>();
 
         Vertex<String> london = new Vertex<>("London");
         Vertex<String> belfast = new Vertex<>("Belfast");

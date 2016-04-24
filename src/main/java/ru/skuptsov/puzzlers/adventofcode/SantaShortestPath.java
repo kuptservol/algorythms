@@ -21,7 +21,7 @@ public class SantaShortestPath {
 
         BufferedReader sc = new BufferedReader(new InputStreamReader(SantaShortestPath.class.getResourceAsStream("/santaCities")));
 
-        Graph<Vertex<String>, WeightedEdge<String>> graph = new AdjacencyListDirectedGraph<>();
+        Graph<String, Vertex<String>, WeightedEdge<String>> graph = new AdjacencyListDirectedGraph<>();
 
         String line;
         while ((line = sc.readLine()) != null) {
