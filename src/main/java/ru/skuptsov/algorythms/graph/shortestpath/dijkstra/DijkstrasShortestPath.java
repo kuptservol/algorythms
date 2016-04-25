@@ -19,11 +19,11 @@ import java.util.Stack;
  */
 public class DijkstrasShortestPath<P> extends AbstractShortestPath<P> {
 
-    private final Map<Vertex, Edge> edgeTo = new HashMap<>();
-    private final Map<Vertex, Double> distTo = new HashMap<>();
+    private final Map<Vertex<P>, Edge> edgeTo = new HashMap<>();
+    private final Map<Vertex<P>, Double> distTo = new HashMap<>();
     private final PriorityQueue<WeightedVertex> weightedVertexPQ = new PriorityQueue<>();
 
-    public DijkstrasShortestPath(Graph<Vertex<P>, WeightedEdge> graph, Vertex fromV) {
+    public DijkstrasShortestPath(Graph<P, Vertex<P>, WeightedEdge<P>> graph, Vertex fromV) {
         super(graph, fromV);
         weightedVertexPQ.add(new WeightedVertex(fromV, 0.0));
         distTo.put(fromV, 0.0);
@@ -32,8 +32,8 @@ public class DijkstrasShortestPath<P> extends AbstractShortestPath<P> {
         }
     }
 
-    private void relaxVertex(Vertex v) {
-        for (WeightedEdge e : graph.edgesFrom(v)) {
+    private void relaxVertex(Vertex<P> v) {
+        for (WeightedEdge<P> e : graph.edgesFrom(v)) {
             relaxEdge(e);
         }
     }
@@ -117,7 +117,7 @@ public class DijkstrasShortestPath<P> extends AbstractShortestPath<P> {
     }
 
     public static void main(String[] args) {
-        Graph<Vertex<Integer>, WeightedEdge> graph = new AdjacencyListDirectedGraph<>();
+        Graph<Integer, Vertex<Integer>, WeightedEdge<Integer>> graph = new AdjacencyListDirectedGraph<>();
         fillGraph(graph);
 
         DijkstrasShortestPath dijkstrasShortestPath = new DijkstrasShortestPath<>(graph, new Vertex<>(1));
@@ -126,7 +126,7 @@ public class DijkstrasShortestPath<P> extends AbstractShortestPath<P> {
 
     }
 
-    private static void fillGraph(Graph<Vertex<Integer>, WeightedEdge> graph) {
+    private static void fillGraph(Graph<Integer, Vertex<Integer>, WeightedEdge<Integer>> graph) {
         Vertex<Integer> vertex1 = new Vertex<>(1);
         Vertex<Integer> vertex2 = new Vertex<>(2);
         Vertex<Integer> vertex3 = new Vertex<>(3);

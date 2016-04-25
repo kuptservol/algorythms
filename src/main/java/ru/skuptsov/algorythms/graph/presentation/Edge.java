@@ -6,12 +6,12 @@ import com.google.common.base.Objects;
  * @author Sergey Kuptsov
  * @since 17/04/2016
  */
-public class Edge {
+public class Edge<P> {
 
-    protected Vertex fromV;
-    protected Vertex toV;
+    protected Vertex<P> fromV;
+    protected Vertex<P> toV;
 
-    public Edge(Vertex fromV, Vertex toV) {
+    public Edge(Vertex<P> fromV, Vertex<P> toV) {
         this.fromV = fromV;
         this.toV = toV;
     }
@@ -23,11 +23,11 @@ public class Edge {
         return this;
     }
 
-    public Vertex getFromV() {
+    public Vertex<P> getFromV() {
         return fromV;
     }
 
-    public Vertex getToV() {
+    public Vertex<P> getToV() {
         return toV;
     }
 

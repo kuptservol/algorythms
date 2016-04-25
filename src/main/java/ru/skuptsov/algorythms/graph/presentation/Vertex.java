@@ -14,6 +14,10 @@ public class Vertex<P> {
         this.value = value;
     }
 
+    public P getValue() {
+        return value;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

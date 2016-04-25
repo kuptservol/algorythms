@@ -4,7 +4,7 @@ package ru.skuptsov.algorythms.graph.presentation;
  * @author Sergey Kuptsov
  * @since 17/04/2016
  */
-public abstract class AbstractGraph<V extends Vertex, E extends Edge> implements Graph<V, E> {
+public abstract class AbstractGraph<P, V extends Vertex<P>, E extends Edge<P>> implements Graph<P, V, E> {
 
     protected int vNum;
     protected int eNum;
