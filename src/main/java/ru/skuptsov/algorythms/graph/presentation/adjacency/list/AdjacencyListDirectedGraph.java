@@ -1,6 +1,5 @@
 package ru.skuptsov.algorythms.graph.presentation.adjacency.list;
 
-import com.sun.istack.internal.NotNull;
 import ru.skuptsov.algorythms.graph.presentation.AbstractGraph;
 import ru.skuptsov.algorythms.graph.presentation.Edge;
 import ru.skuptsov.algorythms.graph.presentation.Vertex;
@@ -49,7 +48,7 @@ public class AdjacencyListDirectedGraph<E extends Edge<P>, P> extends AbstractGr
         putIfAbsent(adj, edge.getFromV(), new HashSet<>()).add(edge);
     }
 
-    private static <K, V> V putIfAbsent(@NotNull Map<K, V> map, @NotNull K key, @NotNull V value) {
+    private static <K, V> V putIfAbsent(Map<K, V> map, K key, V value) {
         V prev = map.get(key);
         if (null == prev) {
             map.put(key, value);
