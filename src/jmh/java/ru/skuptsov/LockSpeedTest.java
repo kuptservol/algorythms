@@ -1,18 +1,17 @@
-package ru.skuptsov.performance;
+package ru.skuptsov;
 
+import com.google.common.util.concurrent.AtomicDouble;
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.runner.Runner;
 import org.openjdk.jmh.runner.RunnerException;
 import org.openjdk.jmh.runner.options.Options;
 import org.openjdk.jmh.runner.options.OptionsBuilder;
 
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.DoubleAdder;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 import static java.util.concurrent.TimeUnit.MICROSECONDS;
-import static java.util.concurrent.TimeUnit.MILLISECONDS;
-import static java.util.concurrent.TimeUnit.NANOSECONDS;
 import static org.openjdk.jmh.annotations.Mode.AverageTime;
 
 /**
@@ -23,14 +22,14 @@ import static org.openjdk.jmh.annotations.Mode.AverageTime;
 @Warmup(iterations = 1)
 @Measurement(iterations = 1)
 public class LockSpeedTest {
-    Lock lock = new ReentrantLock();
+    private Lock lock = new ReentrantLock();
 
-    double x = 1;
-    double y = 2;
+    private double x = 1;
+    private AtomicDouble atomicDouble = new AtomicDouble();
+    private DoubleAdder doubleAdder = new DoubleAdder();
 
-
-    public double method() {
-        return (x + y);
+    private double method() {
+        return x++;
     }
 
     @Benchmark
@@ -43,10 +42,25 @@ public class LockSpeedTest {
     @Benchmark
     @BenchmarkMode(value = AverageTime)
     @OutputTimeUnit(value = MICROSECONDS)
-    public double sync() {
+    public double syncSingleThread() {
         synchronized (this) {
             return method();
         }
+    }
+
+    @Benchmark
+    @BenchmarkMode(value = AverageTime)
+    @OutputTimeUnit(value = MICROSECONDS)
+    public double atomicDouble() {
+        return atomicDouble.addAndGet(1);
+    }
+
+    @Benchmark
+    @BenchmarkMode(value = AverageTime)
+    @OutputTimeUnit(value = MICROSECONDS)
+    public double doubleAdder() {
+        doubleAdder.add(1d);
+        return doubleAdder.doubleValue();
     }
 
     @Benchmark
