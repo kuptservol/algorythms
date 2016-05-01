@@ -40,89 +40,6 @@ public class WireCircuitCommand {
         return gates.get(a).getOutputSignalValue();
     }
 
-    private static class Gate {
-
-        protected int outputSignal;
-        private final String gateName;
-        protected OperationType sourceOperationType;
-        protected Gate sourceGateLeft;
-        protected Gate sourceGateRight;
-
-
-        public void addSourceGates(OperationType sourceOperationType, Gate sourceGateLeft, Gate sourceGateRight) {
-            this.sourceOperationType = sourceOperationType;
-            this.sourceGateLeft = sourceGateLeft;
-            this.sourceGateRight = sourceGateRight;
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-            Gate that = (Gate) o;
-            return Objects.equal(gateName, that.gateName);
-        }
-
-
-        @Override
-        public int hashCode() {
-            return Objects.hashCode(gateName);
-        }
-
-        protected Gate(String gateName) {
-            this.gateName = gateName;
-        }
-
-        public int getOutputSignalValue() {
-
-            if(results.containsKey(this.gateName)){
-                return results.get(this.gateName);
-            }
-            int value = sourceOperationType.execute(sourceGateLeft, sourceGateRight);
-            results.put(this.gateName, value);
-            System.out.println(this.gateName + " "+value);
-            return value;
-        }
-
-        public String gateName() {
-            return gateName;
-        }
-    }
-
-    private enum OperationType {
-
-        SIMPLE_VALUE(gate -> gate[0]),
-        NOT(gate -> ~gate[0]),
-        LSHIFT(gate -> gate[0] << gate[1]),
-        RSHIFT(gate -> gate[0] >>> gate[1]),
-        AND(gate -> gate[0] & gate[1]),
-        OR(gate -> gate[0] | gate[1]);
-
-        private final Function<Integer[], Integer> function;
-
-        OperationType(Function<Integer[], Integer> function) {
-            this.function = function;
-        }
-
-        public int execute(Gate left, Gate right) {
-            return function.apply(new Integer[]{left.getOutputSignalValue(), right.getOutputSignalValue()}) & 0x0000FFFF;
-        }
-    }
-
-
-    private static class SimpleValueGate extends Gate {
-
-        protected SimpleValueGate(int value) {
-            super("");
-            outputSignal = value;
-        }
-
-        public int getOutputSignalValue() {
-            return outputSignal;
-        }
-
-    }
-
     private void processCommand(String line) {
         String[] signalTokens = line.split(" ");
 
@@ -210,5 +127,86 @@ public class WireCircuitCommand {
         }
 
         targetGate.addSourceGates(operationType, sourceGate1, sourceGate2);
+    }
+
+    private enum OperationType {
+
+        SIMPLE_VALUE(gate -> gate[0]),
+        NOT(gate -> ~gate[0]),
+        LSHIFT(gate -> gate[0] << gate[1]),
+        RSHIFT(gate -> gate[0] >>> gate[1]),
+        AND(gate -> gate[0] & gate[1]),
+        OR(gate -> gate[0] | gate[1]);
+
+        private final Function<Integer[], Integer> function;
+
+        OperationType(Function<Integer[], Integer> function) {
+            this.function = function;
+        }
+
+        public int execute(Gate left, Gate right) {
+            return function.apply(new Integer[]{left.getOutputSignalValue(), right.getOutputSignalValue()}) & 0x0000FFFF;
+        }
+    }
+
+    private static class Gate {
+
+        private final String gateName;
+        protected int outputSignal;
+        protected OperationType sourceOperationType;
+        protected Gate sourceGateLeft;
+        protected Gate sourceGateRight;
+
+
+        protected Gate(String gateName) {
+            this.gateName = gateName;
+        }
+
+        public void addSourceGates(OperationType sourceOperationType, Gate sourceGateLeft, Gate sourceGateRight) {
+            this.sourceOperationType = sourceOperationType;
+            this.sourceGateLeft = sourceGateLeft;
+            this.sourceGateRight = sourceGateRight;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Gate that = (Gate) o;
+            return Objects.equal(gateName, that.gateName);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hashCode(gateName);
+        }
+
+        public int getOutputSignalValue() {
+
+            if (results.containsKey(this.gateName)) {
+                return results.get(this.gateName);
+            }
+            int value = sourceOperationType.execute(sourceGateLeft, sourceGateRight);
+            results.put(this.gateName, value);
+            System.out.println(this.gateName + " " + value);
+            return value;
+        }
+
+        public String gateName() {
+            return gateName;
+        }
+    }
+
+    private static class SimpleValueGate extends Gate {
+
+        protected SimpleValueGate(int value) {
+            super("");
+            outputSignal = value;
+        }
+
+        public int getOutputSignalValue() {
+            return outputSignal;
+        }
+
     }
 }

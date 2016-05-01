@@ -9,6 +9,26 @@ import java.util.List;
  */
 public class Composite {
 
+    public static void main(String[] args) {
+
+        ComponentPrice apple1 = new Apple();
+        ComponentPrice apple2 = new Apple();
+        ComponentPrice bunchOfBananas = new BunchOfBananas(10);
+
+        ComponentPrice shoppingCart = new ShoppingCart();
+        shoppingCart.add(apple1);
+        shoppingCart.add(apple2);
+        shoppingCart.add(bunchOfBananas);
+
+        ComponentPrice moreBiggerShoppingCart = new ShoppingCart();
+        moreBiggerShoppingCart.add(shoppingCart);
+
+
+        System.out.println(moreBiggerShoppingCart.getPrice());
+
+
+    }
+
     @FunctionalInterface
     public interface ComponentPrice {
         int getPrice();
@@ -55,16 +75,14 @@ public class Composite {
         }
     }
 
-
     public static class ShoppingCart extends CompositeComponent {
 
     }
 
     public static class BunchOfBananas extends CompositeComponent {
 
-        private final int num;
-
         public static final int BANANA_PRICE = 100;
+        private final int num;
 
 
         public BunchOfBananas(int num) {
@@ -75,27 +93,6 @@ public class Composite {
         public int getPrice() {
             return BANANA_PRICE * num + super.getPrice();
         }
-    }
-
-
-    public static void main(String[] args) {
-
-        ComponentPrice apple1 = new Apple();
-        ComponentPrice apple2 = new Apple();
-        ComponentPrice bunchOfBananas = new BunchOfBananas(10);
-
-        ComponentPrice shoppingCart = new ShoppingCart();
-        shoppingCart.add(apple1);
-        shoppingCart.add(apple2);
-        shoppingCart.add(bunchOfBananas);
-
-        ComponentPrice moreBiggerShoppingCart = new ShoppingCart();
-        moreBiggerShoppingCart.add(shoppingCart);
-
-
-        System.out.println(moreBiggerShoppingCart.getPrice());
-
-
     }
 
 }

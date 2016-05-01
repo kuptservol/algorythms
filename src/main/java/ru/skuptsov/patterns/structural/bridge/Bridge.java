@@ -8,6 +8,19 @@ import java.util.concurrent.*;
  * Created by Сергей on 18.04.2016.
  */
 public class Bridge {
+    public static void main(String[] args) throws InterruptedException {
+        Notifier immediateNotifier = new ImmediateNotifier(new SmsProvider());
+        Notifier collectNotifier = new CollectNotifier(new PushProvider());
+
+
+        for (int i = 0; i < 100; i++) {
+
+            Thread.currentThread().sleep(1000);
+            immediateNotifier.notify("text" + i);
+            collectNotifier.notify("text" + i);
+        }
+    }
+
     public interface Provider {
         void send(String text);
     }
@@ -72,19 +85,6 @@ public class Bridge {
         @Override
         public void notify(String text) {
             provider.send(text);
-        }
-    }
-
-    public static void main(String[] args) throws InterruptedException {
-        Notifier immediateNotifier = new ImmediateNotifier(new SmsProvider());
-        Notifier collectNotifier = new CollectNotifier(new PushProvider());
-
-
-        for (int i = 0; i < 100; i++) {
-
-            Thread.currentThread().sleep(1000);
-            immediateNotifier.notify("text"+i);
-            collectNotifier.notify("text"+i);
         }
     }
 }

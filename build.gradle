@@ -32,5 +32,7 @@ dependencies {
     compile "org.aspectj:aspectjweaver:1.8.7"
     compile "org.openjdk.jmh:jmh-core:1.12"
     compile 'org.openjdk.jmh:jmh-generator-annprocess:1.12'
+    compile "org.projectlombok:lombok:1.16.4"
+    compile "org.testng:testng:6.9.10"
 
 }

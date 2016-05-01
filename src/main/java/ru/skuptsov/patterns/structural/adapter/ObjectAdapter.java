@@ -8,6 +8,13 @@ import java.util.Random;
  */
 public class ObjectAdapter {
 
+    public static void main(String[] args) {
+
+        SequenceGenerator sequenceGenerator = new SequenceGenerator(new GeneratorAdapter());
+        System.out.println(sequenceGenerator.next());
+
+    }
+
     interface Generator {
         int next();
     }
@@ -33,13 +40,6 @@ public class ObjectAdapter {
         public int next() {
             return generator.next();
         }
-    }
-
-    public static void main(String[] args) {
-
-        SequenceGenerator sequenceGenerator = new SequenceGenerator(new GeneratorAdapter());
-        System.out.println(sequenceGenerator.next());
-
     }
 
 

@@ -10,6 +10,19 @@ import java.io.Reader;
  */
 public class Decorator {
 
+    public static void main(String[] args) throws IOException {
+
+        char[] chars = {'A', 'f', 'g', 'r'};
+        LineReader lineReader = new UpperCaseLineReader(
+                new LazyLineReader(
+                        new SimpleLineReader(
+                                new CharArrayReader(chars))));
+
+        System.out.println(lineReader.read());
+        System.out.println(lineReader.read());
+
+    }
+
     public interface LineReader {
         String read() throws IOException;
     }
@@ -67,19 +80,6 @@ public class Decorator {
         public String read() throws IOException {
             return lineReader.read().toUpperCase();
         }
-    }
-
-    public static void main(String[] args) throws IOException {
-
-        char[] chars = {'A', 'f', 'g', 'r'};
-        LineReader lineReader = new UpperCaseLineReader(
-                new LazyLineReader(
-                        new SimpleLineReader(
-                                new CharArrayReader(chars))));
-
-        System.out.println(lineReader.read());
-        System.out.println(lineReader.read());
-
     }
 
 }

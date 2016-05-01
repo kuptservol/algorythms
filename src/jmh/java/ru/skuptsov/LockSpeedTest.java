@@ -28,6 +28,15 @@ public class LockSpeedTest {
     private AtomicDouble atomicDouble = new AtomicDouble();
     private DoubleAdder doubleAdder = new DoubleAdder();
 
+    public static void main(String[] args) throws RunnerException {
+        Options opt = new OptionsBuilder()
+                .include(LockSpeedTest.class.getSimpleName())
+                .forks(1)
+                .build();
+
+        new Runner(opt).run();
+    }
+
     private double method() {
         return x++;
     }
@@ -71,14 +80,5 @@ public class LockSpeedTest {
         double result = method();
         lock.unlock();
         return result;
-    }
-
-    public static void main(String[] args) throws RunnerException {
-        Options opt = new OptionsBuilder()
-                .include(LockSpeedTest.class.getSimpleName())
-                .forks(1)
-                .build();
-
-        new Runner(opt).run();
     }
 }

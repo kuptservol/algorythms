@@ -14,23 +14,6 @@ public class QuickFind extends UnionFind {
         super(N);
     }
 
-    @Override
-    public int find(int p) {
-        return id[p];
-    }
-
-    @Override
-    public void union(int p, int q) {
-        int pID = find(p);
-        int qID = find(q);
-
-        if (pID == qID) return;
-
-        for (int i = 0; i < id.length; i++)
-            if (id[i] == pID) id[i] = qID;
-        count--;
-    }
-
     public static void main(String[] args) throws FileNotFoundException {
 
         IOUtils io = IOUtils.createFromFilePath("tinyUF.txt");
@@ -48,5 +31,22 @@ public class QuickFind extends UnionFind {
 
         io.print(uf.id);
 
+    }
+
+    @Override
+    public int find(int p) {
+        return id[p];
+    }
+
+    @Override
+    public void union(int p, int q) {
+        int pID = find(p);
+        int qID = find(q);
+
+        if (pID == qID) return;
+
+        for (int i = 0; i < id.length; i++)
+            if (id[i] == pID) id[i] = qID;
+        count--;
     }
 }

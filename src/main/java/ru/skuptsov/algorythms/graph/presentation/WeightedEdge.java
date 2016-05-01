@@ -1,5 +1,7 @@
 package ru.skuptsov.algorythms.graph.presentation;
 
+import com.google.common.base.MoreObjects;
+
 /**
  * @author Sergey Kuptsov
  * @since 17/04/2016
@@ -15,5 +17,14 @@ public class WeightedEdge<P> extends Edge<P> {
 
     public Double getWeight() {
         return weight;
+    }
+
+    @Override
+    public String toString() {
+        return MoreObjects.toStringHelper(this)
+                .add("fromV", fromV)
+                .add("toV", toV)
+                .add("weight", weight)
+                .toString();
     }
 }

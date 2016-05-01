@@ -1,6 +1,5 @@
 package ru.skuptsov.patterns.structural.proxy;
 
-import org.springframework.stereotype.Component;
 import ru.skuptsov.patterns.structural.proxy.aspectJ.SpringAspectJProxy.Transactional;
 
 /**
