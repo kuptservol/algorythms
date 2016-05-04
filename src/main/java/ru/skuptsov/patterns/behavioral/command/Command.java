@@ -15,9 +15,7 @@ public class Command {
 
         tradePlatForm.executeNext(buyStock);
         tradePlatForm.executeNext(sellStock);
-
     }
-
 
     public interface MarketOperation {
         void execute();
