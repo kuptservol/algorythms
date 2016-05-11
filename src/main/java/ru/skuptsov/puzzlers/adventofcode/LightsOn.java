@@ -13,8 +13,8 @@ import java.util.Iterator;
  */
 public class LightsOn {
 
-    public static int lightsOn = 0;
     public static final int DESK_SIZE = 1000;
+    public static int lightsOn = 0;
     private static byte[][] lightDesk = new byte[DESK_SIZE][DESK_SIZE];
 
     public static void main(String[] args) throws IOException {
@@ -58,41 +58,6 @@ public class LightsOn {
         return new RectangleIterator(xLeftBottom, yLeftBottom, xRightUpper, yRightUpper);
     }
 
-    private static class RectangleIterator implements Iterator<Pair<Integer, Integer>>{
-
-        int xLeftBottom, yLeftBottom, xRightUpper, yRightUpper;
-        int x,y;
-
-        public RectangleIterator(int xLeftBottom, int yLeftBottom, int xRightUpper, int yRightUpper) {
-            this.xLeftBottom = xLeftBottom;
-            this.yLeftBottom = yLeftBottom;
-            this.xRightUpper = xRightUpper;
-            this.yRightUpper = yRightUpper;
-
-            x= xLeftBottom;
-            y=yLeftBottom;
-        }
-
-        @Override
-        public boolean hasNext() {
-            return x<=xRightUpper && y<=yRightUpper;
-        }
-
-        @Override
-        public Pair<Integer, Integer> next() {
-            Pair pair = new Pair<>(x,y);
-
-            if(x==xRightUpper) {
-                y++;
-                x = xLeftBottom;
-            }else{
-                x++;
-            }
-
-            return pair;
-        }
-    }
-
     private static void turnOn(Iterator<Pair<Integer, Integer>> iterator) {
         iterator.forEachRemaining(pair -> {
             increaseLightsOn(lightDesk[pair.getKey()][pair.getValue()]);
@@ -128,5 +93,40 @@ public class LightsOn {
                 lightDesk[pair.getKey()][pair.getValue()] = 1;
             }
         });
+    }
+
+    private static class RectangleIterator implements Iterator<Pair<Integer, Integer>> {
+
+        int xLeftBottom, yLeftBottom, xRightUpper, yRightUpper;
+        int x, y;
+
+        public RectangleIterator(int xLeftBottom, int yLeftBottom, int xRightUpper, int yRightUpper) {
+            this.xLeftBottom = xLeftBottom;
+            this.yLeftBottom = yLeftBottom;
+            this.xRightUpper = xRightUpper;
+            this.yRightUpper = yRightUpper;
+
+            x = xLeftBottom;
+            y = yLeftBottom;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return x <= xRightUpper && y <= yRightUpper;
+        }
+
+        @Override
+        public Pair<Integer, Integer> next() {
+            Pair pair = new Pair<>(x, y);
+
+            if (x == xRightUpper) {
+                y++;
+                x = xLeftBottom;
+            } else {
+                x++;
+            }
+
+            return pair;
+        }
     }
 }

@@ -9,14 +9,13 @@ import com.lmax.disruptor.RingBuffer;
  */
 public class SimpleEventProducer {
 
+    private static final EventTranslatorOneArg<SimpleEvent, Long> TRANSLATOR =
+            (event, sequence, bb) -> event.setValue(bb);
     private final RingBuffer<SimpleEvent> ringBuffer;
 
     public SimpleEventProducer(RingBuffer<SimpleEvent> ringBuffer) {
         this.ringBuffer = ringBuffer;
     }
-
-    private static final EventTranslatorOneArg<SimpleEvent, Long> TRANSLATOR =
-            (event, sequence, bb) -> event.setValue(bb);
 
     public void onData(Long bb) {
         ringBuffer.publishEvent(TRANSLATOR, bb);

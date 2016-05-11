@@ -2,7 +2,6 @@ package ru.skuptsov.algorythms.graph.shortestpath;
 
 import ru.skuptsov.algorythms.graph.presentation.Edge;
 import ru.skuptsov.algorythms.graph.presentation.Vertex;
-import ru.skuptsov.algorythms.graph.presentation.WeightedEdge;
 
 /**
  * @author Sergey Kuptsov
@@ -15,5 +14,4 @@ public interface ShortestPath {
     boolean hasPathTo(Vertex v);
 
     Iterable<Edge> pathTo(Vertex v);
-
 }

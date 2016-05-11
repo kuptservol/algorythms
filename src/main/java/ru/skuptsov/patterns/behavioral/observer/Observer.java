@@ -12,6 +12,15 @@ import java.util.concurrent.ExecutionException;
 public class Observer {
 
 
+    public static void main(String[] args) throws ExecutionException, InterruptedException {
+        EventSource eventSource = new EventSource();
+
+        eventSource.addObserver((Observable o, Object arg) -> System.out.println("Received input " + arg));
+
+        CompletableFuture.runAsync(eventSource).get();
+
+    }
+
     private static class EventSource extends Observable implements Runnable {
 
         @Override
@@ -23,15 +32,6 @@ public class Observer {
             }
 
         }
-    }
-
-    public static void main(String[] args) throws ExecutionException, InterruptedException {
-        EventSource eventSource = new EventSource();
-
-        eventSource.addObserver((Observable o, Object arg) -> System.out.println("Received input " + arg));
-
-        CompletableFuture.runAsync(eventSource).get();
-
     }
 }
 

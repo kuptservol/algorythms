@@ -6,6 +6,21 @@ package ru.skuptsov.patterns.behavioral.command;
 public class Command {
 
 
+    public static void main(String[] args) {
+        TradePlatForm tradePlatForm = new TradePlatForm();
+        Stock stock = new Stock();
+
+        BuyStock buyStock = new BuyStock(stock);
+        SellStock sellStock = new SellStock(stock);
+
+        tradePlatForm.executeNext(buyStock);
+        tradePlatForm.executeNext(sellStock);
+    }
+
+    public interface MarketOperation {
+        void execute();
+    }
+
     public static class Stock {
 
         private String name = "ABC";
@@ -18,11 +33,6 @@ public class Command {
         public void sell() {
             System.out.println("Stock [ Name: " + name + ", Quantity: " + quantity + " ] sold");
         }
-    }
-
-
-    public interface MarketOperation {
-        void execute();
     }
 
     public static class SellStock implements MarketOperation {
@@ -53,24 +63,10 @@ public class Command {
         }
     }
 
-
     public static class TradePlatForm {
 
         public void executeNext(MarketOperation marketOperation) {
             marketOperation.execute();
         }
-    }
-
-
-    public static void main(String[] args) {
-        TradePlatForm  tradePlatForm = new TradePlatForm();
-        Stock stock = new Stock();
-
-        BuyStock buyStock = new BuyStock(stock);
-        SellStock sellStock = new SellStock(stock);
-
-        tradePlatForm.executeNext(buyStock);
-        tradePlatForm.executeNext(sellStock);
-
     }
 }

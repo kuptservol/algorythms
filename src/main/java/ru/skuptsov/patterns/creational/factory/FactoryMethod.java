@@ -5,13 +5,20 @@ package ru.skuptsov.patterns.creational.factory;
  */
 public class FactoryMethod {
 
-    public interface Transport {
-        void send();
+    public static void main(String[] args) {
+        TransportFactory factory = new TransportFactory(SCHEME.HTTPS);
+        Client client = new Client(factory);
+
+        client.send();
     }
 
     enum SCHEME {
         HTTP,
         HTTPS
+    }
+
+    public interface Transport {
+        void send();
     }
 
     public static class Http implements Transport {
@@ -58,13 +65,6 @@ public class FactoryMethod {
         public void send(){
             transportFactory.create().send();
         }
-    }
-
-    public static void main(String[] args) {
-        TransportFactory factory = new TransportFactory(SCHEME.HTTPS);
-        Client client = new Client(factory);
-
-        client.send();
     }
 }
 

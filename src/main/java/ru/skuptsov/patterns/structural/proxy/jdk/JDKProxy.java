@@ -14,6 +14,15 @@ import java.lang.reflect.Proxy;
  */
 public class JDKProxy {
 
+    public static void main(String[] args) {
+        DbConnection dbConnection = (DbConnection) Proxy.newProxyInstance(
+                DbConnection.class.getClassLoader(),
+                new Class[]{DbConnection.class},
+                new TransactionProxy(new DbConnectionImpl()));
+
+        dbConnection.select("Select * from users");
+    }
+
     private static class TransactionProxy implements InvocationHandler {
 
         private final DbConnection dbConnection;
@@ -31,15 +40,6 @@ public class JDKProxy {
                 System.out.println("Commiting transaction");
             }
         }
-    }
-
-    public static void main(String[] args) {
-        DbConnection dbConnection = (DbConnection) Proxy.newProxyInstance(
-                DbConnection.class.getClassLoader(),
-                new Class[]{DbConnection.class},
-                new TransactionProxy(new DbConnectionImpl()));
-
-        dbConnection.select("Select * from users");
     }
 
 

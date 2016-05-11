@@ -4,7 +4,8 @@ import ru.skuptsov.algorythms.graph.presentation.Graph;
 import ru.skuptsov.algorythms.graph.presentation.Vertex;
 import ru.skuptsov.algorythms.graph.presentation.WeightedEdge;
 import ru.skuptsov.algorythms.graph.presentation.adjacency.list.AdjacencyListDirectedGraph;
-import ru.skuptsov.algorythms.graph.travellingsalesmanproblem.NearestNeighbourTCP;
+import ru.skuptsov.algorythms.graph.travellingsalesmanproblem.BruteForceTCP;
+import ru.skuptsov.algorythms.graph.travellingsalesmanproblem.TravellingSalesmanProblem;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -34,12 +35,11 @@ public class SantaShortestPath {
             graph.addEdge(new WeightedEdge<>(second, first, new Double(params[4])));
         }
 
-        NearestNeighbourTCP<String> tcp = new NearestNeighbourTCP<>(graph);
+        TravellingSalesmanProblem<String> tcp = new BruteForceTCP<>(graph);
 
-        List<WeightedEdge<String>> path = tcp.tcp();
-        path.forEach(e -> System.out.println(e.getFromV().getValue() + " -> " + e.getToV().getValue()));
+        List<WeightedEdge<String>> path = tcp.buildShortestRoute();
+        path.forEach(e -> System.out.println(e.getFromV().getValue() + " -> " + e.getToV().getValue() + " " + e.getWeight()));
 
         System.out.println(path.stream().map(WeightedEdge::getWeight).reduce((a, b) -> a + b).get());
-
     }
 }

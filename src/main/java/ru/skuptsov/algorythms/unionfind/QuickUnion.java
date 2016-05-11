@@ -18,6 +18,26 @@ public class QuickUnion extends UnionFind {
         super(N);
     }
 
+    public static void main(String[] args) throws FileNotFoundException {
+
+        IOUtils io = IOUtils.createFromFilePath("tinyUF2.txt");
+
+        int N = io.readInt();
+        QuickUnion uf = new QuickUnion(N);
+        while (!io.isEmpty()) {
+            int p = io.readInt();
+            int q = io.readInt();
+            if (uf.connected(p, q)) continue;
+            uf.union(p, q);
+            System.out.println(p + " " + q);
+        }
+        io.println(uf.count() + " components");
+
+        io.print(uf.id);
+
+
+    }
+
     @Override
     protected int find(int p) {
 
@@ -40,26 +60,5 @@ public class QuickUnion extends UnionFind {
             id[pRoot]=qRoot;
             count --;
         }
-    }
-
-    public static void main(String[] args) throws FileNotFoundException {
-
-        IOUtils io = IOUtils.createFromFilePath("tinyUF2.txt");
-
-        int N = io.readInt();
-        QuickUnion uf = new QuickUnion(N);
-        while (!io.isEmpty()) {
-            int p = io.readInt();
-            int q = io.readInt();
-            if (uf.connected(p, q)) continue;
-            uf.union(p, q);
-            System.out.println(p + " " + q);
-        }
-        io.println(uf.count() + " components");
-
-        io.print(uf.id);
-
-
-
     }
 }

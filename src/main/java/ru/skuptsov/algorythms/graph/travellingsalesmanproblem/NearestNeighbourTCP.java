@@ -3,7 +3,6 @@ package ru.skuptsov.algorythms.graph.travellingsalesmanproblem;
 import ru.skuptsov.algorythms.graph.presentation.Graph;
 import ru.skuptsov.algorythms.graph.presentation.Vertex;
 import ru.skuptsov.algorythms.graph.presentation.WeightedEdge;
-import ru.skuptsov.algorythms.graph.presentation.adjacency.list.AdjacencyListDirectedGraph;
 
 import java.util.*;
 
@@ -11,7 +10,7 @@ import java.util.*;
  * @author Sergey Kuptsov
  * @since 24/04/2016
  */
-public class NearestNeighbourTCP<P> {
+public class NearestNeighbourTCP<P> implements TravellingSalesmanProblem<P> {
 
     private final Graph<P, Vertex<P>, WeightedEdge<P>> graph;
 
@@ -19,7 +18,7 @@ public class NearestNeighbourTCP<P> {
         this.graph = graph;
     }
 
-    public List<WeightedEdge<P>> tcp() {
+    public List<WeightedEdge<P>> buildShortestRoute() {
         List<WeightedEdge<P>> tsPath = new ArrayList<>();
         Set<Vertex<P>> visited = new HashSet<>();
         Vertex<P> startVertex = graph.vertexes().iterator().next();
@@ -52,27 +51,5 @@ public class NearestNeighbourTCP<P> {
         }
 
         return tsPath;
-    }
-
-    public static void main(String[] args) {
-
-        Graph<String, Vertex<String>, WeightedEdge<String>> graph = new AdjacencyListDirectedGraph<>();
-
-        Vertex<String> london = new Vertex<>("London");
-        Vertex<String> belfast = new Vertex<>("Belfast");
-        Vertex<String> dublin = new Vertex<>("Dublin");
-
-        graph.addEdge(new WeightedEdge<>(london, dublin, 464d));
-        graph.addEdge(new WeightedEdge<>(dublin, london, 464d));
-
-        graph.addEdge(new WeightedEdge<>(london, belfast, 518d));
-        graph.addEdge(new WeightedEdge<>(belfast, london, 518d));
-
-        graph.addEdge(new WeightedEdge<>(dublin, belfast, 141d));
-        graph.addEdge(new WeightedEdge<>(belfast, dublin, 141d));
-
-
-        NearestNeighbourTCP<String> tcp = new NearestNeighbourTCP<>(graph);
-        System.out.println(tcp.tcp().stream().map(WeightedEdge::getWeight).reduce((a, b) -> a + b));
     }
 }

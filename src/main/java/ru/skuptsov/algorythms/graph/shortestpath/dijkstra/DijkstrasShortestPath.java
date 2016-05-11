@@ -32,6 +32,54 @@ public class DijkstrasShortestPath<P> extends AbstractShortestPath<P> {
         }
     }
 
+    public static void main(String[] args) {
+        Graph<Integer, Vertex<Integer>, WeightedEdge<Integer>> graph = new AdjacencyListDirectedGraph<>();
+        fillGraph(graph);
+
+        DijkstrasShortestPath dijkstrasShortestPath = new DijkstrasShortestPath<>(graph, new Vertex<>(1));
+
+        System.out.println(dijkstrasShortestPath.distTo(new Vertex<>(4)));
+
+    }
+
+    private static void fillGraph(Graph<Integer, Vertex<Integer>, WeightedEdge<Integer>> graph) {
+        Vertex<Integer> vertex1 = new Vertex<>(1);
+        Vertex<Integer> vertex2 = new Vertex<>(2);
+        Vertex<Integer> vertex3 = new Vertex<>(3);
+        Vertex<Integer> vertex4 = new Vertex<>(4);
+        Vertex<Integer> vertex5 = new Vertex<>(5);
+        Vertex<Integer> vertex6 = new Vertex<>(6);
+
+
+        graph.addEdge(new WeightedEdge(vertex1, vertex2, 7d));
+        graph.addEdge(new WeightedEdge(vertex2, vertex1, 7d));
+
+        graph.addEdge(new WeightedEdge(vertex1, vertex6, 14d));
+        graph.addEdge(new WeightedEdge(vertex6, vertex1, 14d));
+
+        graph.addEdge(new WeightedEdge(vertex1, vertex3, 9d));
+        graph.addEdge(new WeightedEdge(vertex3, vertex1, 9d));
+
+        graph.addEdge(new WeightedEdge(vertex3, vertex6, 2d));
+        graph.addEdge(new WeightedEdge(vertex6, vertex3, 2d));
+
+        graph.addEdge(new WeightedEdge(vertex3, vertex4, 11d));
+        graph.addEdge(new WeightedEdge(vertex4, vertex3, 11d));
+
+        graph.addEdge(new WeightedEdge(vertex6, vertex5, 9d));
+        graph.addEdge(new WeightedEdge(vertex5, vertex6, 9d));
+
+        graph.addEdge(new WeightedEdge(vertex5, vertex4, 6d));
+        graph.addEdge(new WeightedEdge(vertex4, vertex5, 6d));
+
+        graph.addEdge(new WeightedEdge(vertex2, vertex4, 15d));
+        graph.addEdge(new WeightedEdge(vertex4, vertex2, 15d));
+
+        graph.addEdge(new WeightedEdge(vertex3, vertex2, 10d));
+        graph.addEdge(new WeightedEdge(vertex2, vertex3, 10d));
+
+    }
+
     private void relaxVertex(Vertex<P> v) {
         for (WeightedEdge<P> e : graph.edgesFrom(v)) {
             relaxEdge(e);
@@ -114,53 +162,5 @@ public class DijkstrasShortestPath<P> extends AbstractShortestPath<P> {
         public int compareTo(WeightedVertex o) {
             return o.getWeight().compareTo(weight);
         }
-    }
-
-    public static void main(String[] args) {
-        Graph<Integer, Vertex<Integer>, WeightedEdge<Integer>> graph = new AdjacencyListDirectedGraph<>();
-        fillGraph(graph);
-
-        DijkstrasShortestPath dijkstrasShortestPath = new DijkstrasShortestPath<>(graph, new Vertex<>(1));
-
-        System.out.println(dijkstrasShortestPath.distTo(new Vertex<>(4)));
-
-    }
-
-    private static void fillGraph(Graph<Integer, Vertex<Integer>, WeightedEdge<Integer>> graph) {
-        Vertex<Integer> vertex1 = new Vertex<>(1);
-        Vertex<Integer> vertex2 = new Vertex<>(2);
-        Vertex<Integer> vertex3 = new Vertex<>(3);
-        Vertex<Integer> vertex4 = new Vertex<>(4);
-        Vertex<Integer> vertex5 = new Vertex<>(5);
-        Vertex<Integer> vertex6 = new Vertex<>(6);
-
-
-        graph.addEdge(new WeightedEdge(vertex1, vertex2, 7d));
-        graph.addEdge(new WeightedEdge(vertex2, vertex1, 7d));
-
-        graph.addEdge(new WeightedEdge(vertex1, vertex6, 14d));
-        graph.addEdge(new WeightedEdge(vertex6, vertex1, 14d));
-
-        graph.addEdge(new WeightedEdge(vertex1, vertex3, 9d));
-        graph.addEdge(new WeightedEdge(vertex3, vertex1, 9d));
-
-        graph.addEdge(new WeightedEdge(vertex3, vertex6, 2d));
-        graph.addEdge(new WeightedEdge(vertex6, vertex3, 2d));
-
-        graph.addEdge(new WeightedEdge(vertex3, vertex4, 11d));
-        graph.addEdge(new WeightedEdge(vertex4, vertex3, 11d));
-
-        graph.addEdge(new WeightedEdge(vertex6, vertex5, 9d));
-        graph.addEdge(new WeightedEdge(vertex5, vertex6, 9d));
-
-        graph.addEdge(new WeightedEdge(vertex5, vertex4, 6d));
-        graph.addEdge(new WeightedEdge(vertex4, vertex5, 6d));
-
-        graph.addEdge(new WeightedEdge(vertex2, vertex4, 15d));
-        graph.addEdge(new WeightedEdge(vertex4, vertex2, 15d));
-
-        graph.addEdge(new WeightedEdge(vertex3, vertex2, 10d));
-        graph.addEdge(new WeightedEdge(vertex2, vertex3, 10d));
-
     }
 }

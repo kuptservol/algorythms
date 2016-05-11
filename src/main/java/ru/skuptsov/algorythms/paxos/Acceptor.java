@@ -1,7 +1,7 @@
 package ru.skuptsov.algorythms.paxos;
 
-import ru.skuptsov.algorythms.paxos.message.ProposalEvent;
 import ru.skuptsov.algorythms.paxos.message.AcceptEvent;
+import ru.skuptsov.algorythms.paxos.message.ProposalEvent;
 
 /**
  * Created by Сергей on 01.03.2016.

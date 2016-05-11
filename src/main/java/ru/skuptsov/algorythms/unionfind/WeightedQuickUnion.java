@@ -20,6 +20,26 @@ public class WeightedQuickUnion extends UnionFind {
         }
     }
 
+    public static void main(String[] args) throws FileNotFoundException {
+
+        IOUtils io = IOUtils.createFromFilePath("tinyUF.txt");
+
+        int N = io.readInt();
+        WeightedQuickUnion uf = new WeightedQuickUnion(N);
+        while (!io.isEmpty()) {
+            int p = io.readInt();
+            int q = io.readInt();
+            if (uf.connected(p, q)) continue;
+            uf.union(p, q);
+            System.out.println(p + " " + q);
+        }
+        io.println(uf.count() + " components");
+
+        io.print(uf.id);
+
+
+    }
+
     @Override
     protected int find(int p) {
 
@@ -46,26 +66,6 @@ public class WeightedQuickUnion extends UnionFind {
             }
             count --;
         }
-
-    }
-
-    public static void main(String[] args) throws FileNotFoundException {
-
-        IOUtils io = IOUtils.createFromFilePath("tinyUF.txt");
-
-        int N = io.readInt();
-        WeightedQuickUnion uf = new WeightedQuickUnion(N);
-        while (!io.isEmpty()) {
-            int p = io.readInt();
-            int q = io.readInt();
-            if (uf.connected(p, q)) continue;
-            uf.union(p, q);
-            System.out.println(p + " " + q);
-        }
-        io.println(uf.count() + " components");
-
-        io.print(uf.id);
-
 
     }
 }

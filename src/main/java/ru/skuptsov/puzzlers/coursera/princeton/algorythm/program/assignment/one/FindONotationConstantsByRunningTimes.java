@@ -2,7 +2,6 @@ package ru.skuptsov.puzzlers.coursera.princeton.algorythm.program.assignment.one
 
 import ru.skuptsov.algorythms.utils.IOUtils;
 
-
 import java.io.FileNotFoundException;
 
 /**
