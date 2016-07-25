@@ -2,10 +2,6 @@ package ru.skuptsov.benchmark;
 
 import com.google.common.util.concurrent.AtomicDouble;
 import org.openjdk.jmh.annotations.*;
-import org.openjdk.jmh.runner.Runner;
-import org.openjdk.jmh.runner.RunnerException;
-import org.openjdk.jmh.runner.options.Options;
-import org.openjdk.jmh.runner.options.OptionsBuilder;
 
 import java.util.concurrent.atomic.DoubleAdder;
 import java.util.concurrent.locks.Lock;
@@ -27,15 +23,6 @@ public class LockSpeedTest {
     private double x = 1;
     private AtomicDouble atomicDouble = new AtomicDouble();
     private DoubleAdder doubleAdder = new DoubleAdder();
-
-    public static void main(String[] args) throws RunnerException {
-        Options opt = new OptionsBuilder()
-                .include(LockSpeedTest.class.getSimpleName())
-                .forks(1)
-                .build();
-
-        new Runner(opt).run();
-    }
 
     private double method() {
         return x++;
