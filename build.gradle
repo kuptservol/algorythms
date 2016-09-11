@@ -34,5 +34,5 @@ dependencies {
     compile 'org.openjdk.jmh:jmh-generator-annprocess:1.12'
     compile "org.projectlombok:lombok:1.16.4"
     compile "org.testng:testng:6.9.10"
-
+    compile "io.reactivex:rxjava:1.1.6"
 }
