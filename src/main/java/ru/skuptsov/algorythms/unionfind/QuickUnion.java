@@ -32,26 +32,20 @@ public class QuickUnion extends UnionFind {
             System.out.println(p + " " + q);
         }
         io.println(uf.count() + " components");
-
         io.print(uf.id);
-
-
     }
 
     @Override
     protected int find(int p) {
-
         while(id[p]!=p){
             p = id[p];
         }
 
         return p;
-
     }
 
     @Override
     protected void union(int p, int q) {
-
         int pRoot = find(p);
         int qRoot = find(q);
 

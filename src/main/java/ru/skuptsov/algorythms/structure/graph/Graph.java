@@ -1,4 +1,4 @@
-package ru.skuptsov.algorythms.graph.presentation;
+package ru.skuptsov.algorythms.structure.graph;
 
 /**
  * @author Sergey Kuptsov

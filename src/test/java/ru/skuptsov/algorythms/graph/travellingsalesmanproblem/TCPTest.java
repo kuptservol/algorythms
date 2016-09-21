@@ -3,10 +3,10 @@ package ru.skuptsov.algorythms.graph.travellingsalesmanproblem;
 import com.google.common.collect.ImmutableList;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import ru.skuptsov.algorythms.graph.presentation.Graph;
-import ru.skuptsov.algorythms.graph.presentation.Vertex;
-import ru.skuptsov.algorythms.graph.presentation.WeightedEdge;
-import ru.skuptsov.algorythms.graph.presentation.adjacency.list.AdjacencyListDirectedGraph;
+import ru.skuptsov.algorythms.structure.graph.Graph;
+import ru.skuptsov.algorythms.structure.graph.Vertex;
+import ru.skuptsov.algorythms.structure.graph.WeightedEdge;
+import ru.skuptsov.algorythms.structure.graph.adjacency.list.AdjacencyListDirectedGraph;
 
 import java.util.List;
 

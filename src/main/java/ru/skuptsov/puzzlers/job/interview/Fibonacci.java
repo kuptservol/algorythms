@@ -1,4 +1,4 @@
-package ru.skuptsov.simple;
+package ru.skuptsov.puzzlers.job.interview;
 
 /**
  * Created by Сергей on 07.04.2016.

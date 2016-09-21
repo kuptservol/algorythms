@@ -1,8 +1,8 @@
-package ru.skuptsov.algorythms.graph.presentation.adjacency.list;
+package ru.skuptsov.algorythms.structure.graph.adjacency.list;
 
-import ru.skuptsov.algorythms.graph.presentation.AbstractGraph;
-import ru.skuptsov.algorythms.graph.presentation.Edge;
-import ru.skuptsov.algorythms.graph.presentation.Vertex;
+import ru.skuptsov.algorythms.structure.graph.AbstractGraph;
+import ru.skuptsov.algorythms.structure.graph.Edge;
+import ru.skuptsov.algorythms.structure.graph.Vertex;
 
 import java.util.*;
 import java.util.stream.Collectors;

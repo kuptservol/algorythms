@@ -1,6 +1,6 @@
 package ru.skuptsov.algorythms.graph.travellingsalesmanproblem;
 
-import ru.skuptsov.algorythms.graph.presentation.WeightedEdge;
+import ru.skuptsov.algorythms.structure.graph.WeightedEdge;
 
 import java.util.List;
 

@@ -1,12 +1,12 @@
 package ru.skuptsov.algorythms.graph.shortestpath.dijkstra;
 
 import com.google.common.base.Objects;
-import ru.skuptsov.algorythms.graph.presentation.Edge;
-import ru.skuptsov.algorythms.graph.presentation.Graph;
-import ru.skuptsov.algorythms.graph.presentation.Vertex;
-import ru.skuptsov.algorythms.graph.presentation.WeightedEdge;
-import ru.skuptsov.algorythms.graph.presentation.adjacency.list.AdjacencyListDirectedGraph;
 import ru.skuptsov.algorythms.graph.shortestpath.AbstractShortestPath;
+import ru.skuptsov.algorythms.structure.graph.Edge;
+import ru.skuptsov.algorythms.structure.graph.Graph;
+import ru.skuptsov.algorythms.structure.graph.Vertex;
+import ru.skuptsov.algorythms.structure.graph.WeightedEdge;
+import ru.skuptsov.algorythms.structure.graph.adjacency.list.AdjacencyListDirectedGraph;
 
 import java.util.HashMap;
 import java.util.Map;

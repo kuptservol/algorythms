@@ -1,8 +1,9 @@
-package ru.skuptsov.algorythms.tree.bfs;
+package ru.skuptsov.puzzlers.job.interview;
 
 /**
  * @author Sergey Kuptsov
  * @since 20/09/2016
+ * Print paths from root to all nodes
  */
 public class TreeBFSPrintPath {
 

@@ -1,11 +1,11 @@
 package ru.skuptsov.puzzlers.adventofcode;
 
-import ru.skuptsov.algorythms.graph.presentation.Graph;
-import ru.skuptsov.algorythms.graph.presentation.Vertex;
-import ru.skuptsov.algorythms.graph.presentation.WeightedEdge;
-import ru.skuptsov.algorythms.graph.presentation.adjacency.list.AdjacencyListDirectedGraph;
 import ru.skuptsov.algorythms.graph.travellingsalesmanproblem.BruteForceTCP;
 import ru.skuptsov.algorythms.graph.travellingsalesmanproblem.TravellingSalesmanProblem;
+import ru.skuptsov.algorythms.structure.graph.Graph;
+import ru.skuptsov.algorythms.structure.graph.Vertex;
+import ru.skuptsov.algorythms.structure.graph.WeightedEdge;
+import ru.skuptsov.algorythms.structure.graph.adjacency.list.AdjacencyListDirectedGraph;
 
 import java.io.BufferedReader;
 import java.io.IOException;

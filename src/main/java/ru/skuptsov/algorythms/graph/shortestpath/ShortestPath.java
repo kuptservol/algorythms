@@ -1,7 +1,7 @@
 package ru.skuptsov.algorythms.graph.shortestpath;
 
-import ru.skuptsov.algorythms.graph.presentation.Edge;
-import ru.skuptsov.algorythms.graph.presentation.Vertex;
+import ru.skuptsov.algorythms.structure.graph.Edge;
+import ru.skuptsov.algorythms.structure.graph.Vertex;
 
 /**
  * @author Sergey Kuptsov

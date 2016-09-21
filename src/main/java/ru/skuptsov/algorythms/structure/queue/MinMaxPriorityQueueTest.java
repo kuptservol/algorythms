@@ -1,4 +1,4 @@
-package ru.skuptsov.algorythms.queue;
+package ru.skuptsov.algorythms.structure.queue;
 
 import com.google.common.collect.MinMaxPriorityQueue;
 import jdk.nashorn.internal.ir.debug.ObjectSizeCalculator;
@@ -30,10 +30,8 @@ public class MinMaxPriorityQueueTest {
             minMaxPriorityQueue.add(massive[i]);
         }
 
-
         for (int i = 0; i < 100; i++) {
             System.out.print(" " + minMaxPriorityQueue.poll());
         }
-
     }
 }

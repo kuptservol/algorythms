@@ -1,9 +1,9 @@
 package ru.skuptsov.algorythms.graph.travellingsalesmanproblem;
 
 import com.google.common.collect.ComparisonChain;
-import ru.skuptsov.algorythms.graph.presentation.Graph;
-import ru.skuptsov.algorythms.graph.presentation.Vertex;
-import ru.skuptsov.algorythms.graph.presentation.WeightedEdge;
+import ru.skuptsov.algorythms.structure.graph.Graph;
+import ru.skuptsov.algorythms.structure.graph.Vertex;
+import ru.skuptsov.algorythms.structure.graph.WeightedEdge;
 
 import java.util.*;
 
