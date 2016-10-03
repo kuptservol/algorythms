@@ -25,6 +25,7 @@ public class KthGreatestElement {
         System.out.println(findKthLargestElement(given, k) == wrightAnswer);
         System.out.println(findKthLargestElementWithSort(given, k) == wrightAnswer);
         System.out.println(findKthLargestElementWithHeap(given, k) == wrightAnswer);
+        System.out.println(findKthLargestWithQuickSelect(given, k) == wrightAnswer);
     }
 
     /**
@@ -80,5 +81,47 @@ public class KthGreatestElement {
         Arrays.sort(given);
 
         return given[given.length - k];
+    }
+
+    /**
+     * O(N)
+     */
+    private static int findKthLargestWithQuickSelect(int[] given, int k) {
+        return quickSelect(given, 0, given.length - 1);
+    }
+
+    private static int quickSelect(int[] a, int lo, int hi) {
+        int pivot = partition(given, lo, hi);
+
+        int findingPosition = given.length - k;
+        if (pivot == findingPosition) {
+            return given[pivot];
+        } else if (pivot > findingPosition) {
+            return quickSelect(given, lo, pivot - 1);
+        } else {
+            return quickSelect(given, pivot + 1, hi);
+        }
+    }
+
+    private static int partition(int[] a, int lo, int hi) {
+        int pivot = a[lo];
+        int left = lo;
+        int right = hi + 1;
+
+        while (true) {
+            while (a[++left] < pivot) if (left == hi) break;
+            while (a[--right] > pivot) if (right == lo) break;
+
+            if (left >= right) break;
+            int exch = a[left];
+            a[left] = a[right];
+            a[right] = exch;
+        }
+
+        int exch = a[right];
+        a[right] = a[lo];
+        a[lo] = exch;
+
+        return right;
     }
 }
