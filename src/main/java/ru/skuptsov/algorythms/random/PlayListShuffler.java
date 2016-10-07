@@ -11,6 +11,9 @@ import static java.util.Arrays.asList;
 /**
  * @author Sergey Kuptsov
  * @since 22/09/2016
+ * todo: It would be nice if algorythm kept track of what songs it played and
+ * makes sure that all others songs play first before playing a song for the second time.
+ * There are some songs that play all the time and others that seem never to play.
  */
 public class PlayListShuffler {
 
