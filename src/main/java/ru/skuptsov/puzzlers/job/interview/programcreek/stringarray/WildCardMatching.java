@@ -13,9 +13,9 @@ public class WildCardMatching {
 
     public static void main(String[] args) {
         System.out.println(matches(or, w));
-//        System.out.println(matches(or, "aaaabbbbccccd"));
-//        System.out.println(matches(or, q));
-//        System.out.println(matches("abdbabc", "a*ba*c"));
+        System.out.println(matches(or, "aaaabbbbccccd"));
+        System.out.println(matches(or, q));
+        System.out.println(matches("abdbabc", "a*ba*c"));
     }
 
     private static boolean matches(String or, String reg) {
