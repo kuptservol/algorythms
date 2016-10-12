@@ -20,7 +20,8 @@ public class MaxSubSequence {
     @DataProvider
     public Object[][] testData() {
         return new Object[][]{
-                {of(1, 2, 0, -1, 10, 20, 20, -5, 1, 3), 50}
+                {of(1, 2, 0, -1, 10, 20, 20, -5, 1, 3), 52},
+                {of(1, 2, -1, 2), 4}
         };
     }
 
@@ -32,14 +33,10 @@ public class MaxSubSequence {
     private int getMaxSubsequenceSum(List<Integer> sequence) {
         int maxSum = 0;
         int currSum = 0;
-        for (int i = 0; i < sequence.size(); i++) {
-            Integer next = sequence.get(i);
-            if (next < 0) {
-                maxSum = Math.max(currSum, maxSum);
-                currSum = 0;
-            } else {
-                currSum += next;
-            }
+
+        for (Integer next : sequence) {
+            currSum = Math.max(0, currSum + next);
+            maxSum = Math.max(currSum, maxSum);
         }
 
         return maxSum;
