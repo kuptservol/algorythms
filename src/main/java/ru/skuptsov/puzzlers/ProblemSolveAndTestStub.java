@@ -1,4 +1,4 @@
-package ru.skuptsov.puzzlers.job.interview.programcreek.stringarray;
+package ru.skuptsov.puzzlers;
 
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
