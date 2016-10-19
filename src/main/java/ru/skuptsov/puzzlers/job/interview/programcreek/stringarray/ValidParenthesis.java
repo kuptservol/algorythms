@@ -4,6 +4,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.util.LinkedList;
+import java.util.Objects;
 
 import static org.testng.Assert.assertEquals;
 
@@ -20,7 +21,8 @@ public class ValidParenthesis {
     public Object[][] testData() {
         return new Object[][]{
                 {"[[([])]]", true},
-                {"[[([))]]", false}
+                {"[[([))]]", false},
+                {"][([))]]", false}
         };
     }
 
@@ -31,10 +33,10 @@ public class ValidParenthesis {
             if (next == '(' || next == '[') {
                 stack.addFirst(next);
             } else if (next == ')') {
-                if (stack.pollFirst() != '(')
+                if (!Objects.equals(stack.pollFirst(), '('))
                     return false;
             } else if (next == ']') {
-                if (stack.pollFirst() != '[')
+                if (!Objects.equals(stack.pollFirst(), '['))
                     return false;
             }
         }
