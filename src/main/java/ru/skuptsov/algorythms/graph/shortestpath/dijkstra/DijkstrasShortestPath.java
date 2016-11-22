@@ -94,9 +94,10 @@ public class DijkstrasShortestPath<P> extends AbstractShortestPath<P> {
             distTo.put(to, distToVertex(from) + edge.getWeight());
 
             WeightedVertex indexVertex = new WeightedVertex(to, distTo(to));
-            if (weightedVertexPQ.contains(indexVertex)) {
-                weightedVertexPQ.remove(indexVertex);
-            }
+//            we really need this?
+//            if (weightedVertexPQ.contains(indexVertex)) {
+//                weightedVertexPQ.remove(indexVertex);
+//            }
             weightedVertexPQ.add(indexVertex);
         }
     }
