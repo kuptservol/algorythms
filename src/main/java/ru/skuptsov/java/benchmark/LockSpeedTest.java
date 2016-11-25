@@ -1,4 +1,4 @@
-package ru.skuptsov.benchmark;
+package ru.skuptsov.java.benchmark;
 
 import com.google.common.util.concurrent.AtomicDouble;
 import org.openjdk.jmh.annotations.*;

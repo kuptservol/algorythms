@@ -1,4 +1,4 @@
-package ru.skuptsov.benchmark;
+package ru.skuptsov.java.benchmark;
 
 import org.openjdk.jmh.annotations.*;
 
