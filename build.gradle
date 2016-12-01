@@ -6,12 +6,14 @@ buildscript {
     }
     dependencies {
         classpath "gradle.plugin.me.champeau.gradle:jmh-gradle-plugin:0.3.0"
+        classpath "io.franzbecker:gradle-lombok:1.8"
     }
 }
 
 apply plugin: 'idea'
 apply plugin: 'java'
 apply plugin: "me.champeau.gradle.jmh"
+apply plugin: "io.franzbecker.gradle-lombok"
 
 repositories {
     mavenCentral()
