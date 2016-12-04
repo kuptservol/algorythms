@@ -1,5 +1,7 @@
 package ru.skuptsov.java.server;
 
+import com.google.common.util.concurrent.ThreadFactoryBuilder;
+
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.util.concurrent.ExecutorService;
@@ -16,7 +18,11 @@ import static java.lang.Runtime.getRuntime;
  */
 public abstract class BlockingServer {
     protected final int port;
-    protected final ExecutorService mainThread = Executors.newSingleThreadExecutor();
+    protected final ExecutorService mainThread = Executors.newSingleThreadExecutor(
+            new ThreadFactoryBuilder()
+                    .setNameFormat("MainThread-%d")
+                    .build()
+    );
     protected final HttpServerTask httpServerTask = new HttpServerTask();
     protected volatile boolean running = false;
     protected volatile boolean starting = false;
