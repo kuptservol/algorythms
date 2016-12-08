@@ -1,4 +1,4 @@
-package ru.skuptsov.java.nio.netty;
+package ru.skuptsov.java.server.netty;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
@@ -12,12 +12,26 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 /**
  * @author Sergey Kuptsov
  * @since 04/12/2016
+ * <p>
+ * siege  -c 1000 -r 100
+ * Transactions:		      100000 hits
+ * Availability:		      100.00 %
+ * Elapsed time:		      652.73 secs
+ * Data transferred:	      735.76 MB
+ * Response time:		        5.90 secs
+ * Transaction rate:	      153.20 trans/sec
+ * Throughput:		        1.13 MB/sec
+ * Concurrency:		      904.07
+ * Successful transactions:      100000
+ * Failed transactions:	           0
+ * Longest transaction:	        6.21
+ * Shortest transaction:	        0.10
  */
-public class DiscardServer {
+public class NettyServer {
 
     private int port;
 
-    public DiscardServer(int port) {
+    public NettyServer(int port) {
         this.port = port;
     }
 
@@ -28,7 +42,7 @@ public class DiscardServer {
         } else {
             port = 7070;
         }
-        new DiscardServer(port).run();
+        new NettyServer(port).run();
     }
 
     public void run() throws Exception {
@@ -41,7 +55,7 @@ public class DiscardServer {
                     .childHandler(new ChannelInitializer<SocketChannel>() { // (4)
                         @Override
                         public void initChannel(SocketChannel ch) throws Exception {
-                            ch.pipeline().addLast(new DiscardServerHandler());
+                            ch.pipeline().addLast(new ServerHandler());
                         }
                     })
                     .option(ChannelOption.SO_BACKLOG, 128)          // (5)
