@@ -3,6 +3,11 @@ package ru.skuptsov.puzzlers.job.interview.programcreek.stringarray;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import static com.google.common.collect.ImmutableList.of;
+import static com.google.common.primitives.Ints.toArray;
 import static org.testng.Assert.assertEquals;
 
 /**
@@ -14,66 +19,58 @@ import static org.testng.Assert.assertEquals;
  * Your algorithm should run in O(n) complexity.
  */
 public class LongestConsecutiveSequence {
-    static int[] m1 = {100, 4, 200, 1, 3, 2};
-    static int[] m2 = {0, -1};
 
     @DataProvider
     public Object[][] testData() {
         return new Object[][]{
-                {m1, 4}
+                {toArray(of(100, 4, 200, 1, 3, 2)), 4},
+                {toArray(of(0, -1)), 2},
+                {toArray(of(2147483646, -2147483647, 0, 2, 2147483644, -2147483645, 2147483645)), 3},
         };
-    }
-
-    public static void main(String[] args) {
-        LongestConsecutiveSequence longestConsecutiveSequence = new LongestConsecutiveSequence();
-        System.out.println(longestConsecutiveSequence.getLongestConsecutiveSequenceLengthByteIndex(m2));
     }
 
     @Test(dataProvider = "testData")
     public void test(int[] a, int b) {
-        assertEquals(getLongestConsecutiveSequenceLengthByteIndex(a), b);
+        assertEquals(longestConsecutive(a), b);
     }
 
     public int longestConsecutive(int[] nums) {
-        return getLongestConsecutiveSequenceLengthByteIndex(nums);
+        return getLongestConsecutiveSequenceLengthSetIndex(nums);
     }
 
     /**
-     * Memory O(Nmax)
+     * Memory O(N)
      */
-    private int getLongestConsecutiveSequenceLengthByteIndex(int[] massive) {
-        if (massive.length == 1) return 1;
-        if (massive.length == 0) return 0;
+    private int getLongestConsecutiveSequenceLengthSetIndex(int[] nums) {
+        if (nums.length == 1) return 1;
+        if (nums.length == 0) return 0;
 
-        int max = 0;
-        int min = 0;
-        for (int j : massive) {
-            if (j > max) max = j;
-            if (j < min) min = j;
+        Set<Integer> values = new HashSet<>(1000000);
+        for (int num : nums) {
+            values.add(num);
         }
 
-        if (min < 0) {
-            min = -min;
-        }
-        byte[] mask = new byte[min + max + 1];
+        int longestConsecutiveSequenceLength = 0;
+        for (int num : nums) {
+            int currLongestConsecutiveSequenceLength = 1;
+            int left = num - 1;
+            int right = num + 1;
 
-        for (int j : massive) {
-            mask[j + min] = 1;
-        }
-
-        int maxSeqLength = 0;
-        int currMaxSeqLength = 0;
-        for (int j : mask) {
-            if (j == 0) {
-                maxSeqLength = Math.max(currMaxSeqLength, maxSeqLength);
-                currMaxSeqLength = 0;
-            } else {
-                currMaxSeqLength++;
+            while (values.contains(left)) {
+                values.remove(left);
+                currLongestConsecutiveSequenceLength++;
+                left -= 1;
             }
+
+            while (values.contains(right)) {
+                values.remove(right);
+                currLongestConsecutiveSequenceLength++;
+                right += 1;
+            }
+
+            longestConsecutiveSequenceLength = Math.max(currLongestConsecutiveSequenceLength, longestConsecutiveSequenceLength);
         }
 
-        maxSeqLength = Math.max(currMaxSeqLength, maxSeqLength);
-
-        return maxSeqLength;
+        return longestConsecutiveSequenceLength;
     }
 }
