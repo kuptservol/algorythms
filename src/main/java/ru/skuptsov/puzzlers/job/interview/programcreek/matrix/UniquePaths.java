@@ -5,7 +5,6 @@ import org.testng.annotations.Test;
 
 import java.math.BigInteger;
 
-import static com.google.common.math.BigIntegerMath.factorial;
 import static org.testng.Assert.assertEquals;
 
 /**
@@ -21,10 +20,19 @@ public class UniquePaths {
     int uniquePathCounter = 0;
     int yMax, xMax;
 
+    public static BigInteger factorial(int n) {
+        BigInteger fact = BigInteger.valueOf(1); // this  will be the result
+        for (int i = 1; i <= n; i++) {
+            fact = fact.multiply(BigInteger.valueOf(i));
+        }
+        return fact;
+    }
+
     @DataProvider
     public Object[][] testData() {
         return new Object[][]{
-                {10, 20, 1000}
+                {4, 4, 20},
+                {3, 7, 16}
         };
     }
 
@@ -34,10 +42,48 @@ public class UniquePaths {
     }
 
     /**
-     * By dynamic
-     * Excessive stack consumption
+     * Analytic
+     * Brave idea, but don't works
+     */
+    public int uniquePaths3(int m, int n) {
+        if (m == 1 || n == 1) {
+            return 1;
+        }
+        return permutationsCount(m) + permutationsCount(n);
+    }
+
+    /**
+     * O(m*n)
+     * By dynamic programming
      */
     public int uniquePaths(int m, int n) {
+        if (m == 1 || n == 1) {
+            return 1;
+        }
+        int[][] field = new int[m][n];
+
+        for (int i = 0; i < n; i++) {
+            field[0][i] = 1;
+        }
+
+        for (int i = 0; i < m; i++) {
+            field[i][0] = 1;
+        }
+
+        for (int i = 1; i < m; i++) {
+            for (int j = 1; j < n; j++) {
+                field[i][j] = field[i][j - 1] + field[i - 1][j];
+            }
+        }
+
+        return field[m - 1][n - 1];
+    }
+
+    /**
+     * DFS
+     * Huge time consumption
+     */
+    public int uniquePaths2(int m, int n) {
         uniquePathCounter = 0;
         yMax = m;
         xMax = n;
@@ -48,13 +94,6 @@ public class UniquePaths {
         walk(x, y);
 
         return uniquePathCounter;
-    }
-
-    /**
-     * Analytic
-     */
-    public int uniquePaths2(int m, int n) {
-        return permutationsCount(m) + permutationsCount(n);
     }
 
     private int permutationsCount(int n) {
@@ -73,14 +112,6 @@ public class UniquePaths {
         }
     }
 
-    public static BigInteger factorial(int n) {
-        BigInteger fact = BigInteger.valueOf(1); // this  will be the result
-        for (int i = 1; i <= n; i++) {
-            fact=fact.multiply(BigInteger.valueOf(i));
-        }
-        return fact;
-    }
-
     private void walk(int x, int y) {
         if (x == xMax && y == yMax)
             uniquePathCounter++;
@@ -91,13 +122,4 @@ public class UniquePaths {
             walk(--x, ++y);
         }
     }
-
-    public static void main(String[] args) {
-        UniquePaths paths = new UniquePaths();
-
-        System.out.println(factorial(50));
-
-        System.out.println(paths.uniquePaths2(36, 7));
-    }
-
 }
