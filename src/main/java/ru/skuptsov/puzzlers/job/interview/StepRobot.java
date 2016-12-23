@@ -11,8 +11,8 @@ public class StepRobot {
         Robot left = new Robot("left", monitor);
         Robot right = new Robot("right", monitor);
 
-        Thread leftTh = new Thread(left);
-        Thread rightTh = new Thread(right);
+        Thread leftTh = new Thread(left, "left");
+        Thread rightTh = new Thread(right, "right");
 
         leftTh.start();
         rightTh.start();

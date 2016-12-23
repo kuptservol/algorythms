@@ -9,22 +9,24 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 
+import static java.lang.Runtime.getRuntime;
+
 /**
  * @author Sergey Kuptsov
  * @since 04/12/2016
  * <p>
  * siege  -c 1000 -r 100
- * Transactions:		      100000 hits
- * Availability:		      100.00 %
- * Elapsed time:		      652.73 secs
- * Data transferred:	      735.76 MB
- * Response time:		        5.90 secs
- * Transaction rate:	      153.20 trans/sec
- * Throughput:		        1.13 MB/sec
- * Concurrency:		      904.07
- * Successful transactions:      100000
- * Failed transactions:	           0
- * Longest transaction:	        6.21
+ * Transactions:		       51246 hits
+ * Availability:		       97.79 %
+ * Elapsed time:		      121.71 secs
+ * Data transferred:	      377.05 MB
+ * Response time:		        1.50 secs
+ * Transaction rate:	      421.05 trans/sec
+ * Throughput:		        3.10 MB/sec
+ * Concurrency:		      629.65
+ * Successful transactions:       51246
+ * Failed transactions:	        1160
+ * Longest transaction:	       21.41
  * Shortest transaction:	        0.10
  */
 public class NettyServer {
@@ -47,7 +49,7 @@ public class NettyServer {
 
     public void run() throws Exception {
         EventLoopGroup bossGroup = new NioEventLoopGroup();
-        EventLoopGroup workerGroup = new NioEventLoopGroup();
+        EventLoopGroup workerGroup = new NioEventLoopGroup(getRuntime().availableProcessors() * 8);
         try {
             ServerBootstrap b = new ServerBootstrap();
             b.group(bossGroup, workerGroup)
