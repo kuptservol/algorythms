@@ -12,8 +12,6 @@ import rx.observables.AsyncOnSubscribe;
 public class RxJavaHelloWorld {
 
     public static void main(String[] args) {
-        //hello("Ben", "George");
-//        getSyncObservables().subscribe(System.out::println);
         getASyncObservables().skip(10).take(5).subscribe(System.out::println);
     }
 
