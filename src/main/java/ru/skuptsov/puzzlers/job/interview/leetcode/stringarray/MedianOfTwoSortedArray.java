@@ -13,8 +13,8 @@ public class MedianOfTwoSortedArray {
 
     static Random rand = new Random();
 
-    static int[] N = {1, 10, 1000};
-    static int[] M = {10000};
+    static int[] N = {1, 2, 3};
+    static int[] M = {4, 5};
     static int[] MEDIAN = {1, 2, 3, 4, 5, 6, 7};
     static int result = 4;
 
