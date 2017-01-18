@@ -1,7 +1,6 @@
 package ru.skuptsov.puzzlers.job.interview.zeptoteam;
 
 import com.google.common.util.concurrent.Striped;
-import com.sun.istack.internal.NotNull;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -72,7 +71,7 @@ public class ChatServer {
         private final static Map<ChannelId, ChannelId> registeredUserChannels = new ConcurrentHashMap<>();
         private static final int MAX_GROUP_MEMBERS = 2;
 
-        public static String connectUser(@NotNull String username, @NotNull String password, @NotNull ChannelId channelId) {
+        public static String connectUser(String username, String password, ChannelId channelId) {
             System.out.println("Connecting user [" + username + "]");
             String result;
 
@@ -110,7 +109,7 @@ public class ChatServer {
             return result;
         }
 
-        public static String addUserToChat(@NotNull Channel channel, @NotNull String chatName) {
+        public static String addUserToChat(Channel channel, String chatName) {
             ChannelId channelId = channel.id();
             System.out.println("Connecting user  with channel id [" + channelId + "] to chatName [" + chatName + "]");
 
@@ -174,7 +173,7 @@ public class ChatServer {
             return result;
         }
 
-        public static String sendMessageToChat(@NotNull ChannelId channelId, @NotNull String message) {
+        public static String sendMessageToChat(ChannelId channelId, String message) {
             System.out.println("Send message with channel id [" + channelId + "]");
 
             if (registeredUserChannels.get(channelId) == null) {
@@ -195,7 +194,7 @@ public class ChatServer {
             return "";
         }
 
-        public static String disconnectUser(@NotNull Channel channel) {
+        public static String disconnectUser(Channel channel) {
             ChannelId channelId = channel.id();
             System.out.println("Disconnecting user with channel id [" + channelId + "]");
 
