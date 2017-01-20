@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
  * @author Sergey Kuptsov
  * @since 11/09/2016
  */
-public class RxJavaTest {
+public class BatchWithTimeoutOnRxJavaTest {
 
     @Test
     public void simple() {
@@ -123,6 +123,7 @@ public class RxJavaTest {
 
             @Override
             public void call(Subscriber<? super Integer> subscriber) {
+                System.out.println("Observe thread" + Thread.currentThread().getName());
                 for (int i = 0; i < 100; i++) {
                     subscriber.onNext(i);
 
@@ -136,23 +137,27 @@ public class RxJavaTest {
                 subscriber.onCompleted();
             }
         })
+                .observeOn(Schedulers.from(executorService))
                 .buffer(5, TimeUnit.SECONDS, 4)
+                .observeOn(Schedulers.from(executorService))
                 .flatMap(l -> Observable.just(l)
+                        .observeOn(Schedulers.from(executorService))
                         .subscribeOn(Schedulers.from(executorService))
-                        .map(s -> {
-                                    System.out.println(Thread.currentThread().getName());
-                                    System.out.println(Thread.currentThread().getId());
+                        .observeOn(Schedulers.from(executorService))
+                        .doOnNext(s -> {
+                            System.out.println("Subscribe thread" + Thread.currentThread().getName());
                                     try {
                                         Thread.sleep(5000);
                                     } catch (InterruptedException e) {
                                         e.printStackTrace();
                                     }
-                                    System.out.println(s);
 
-                                    return null;
+                            System.out.println(s);
                                 }
                         )
-                ).subscribe();
+                )
+                .observeOn(Schedulers.from(executorService))
+                .subscribe();
 
         Thread.sleep(50000);
     }
