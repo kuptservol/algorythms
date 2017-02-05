@@ -23,7 +23,7 @@ public class ProblemSolveAndTestStub {
         assertEquals(testMethod(a), b);
     }
 
-    private Object testMethod(Object a) {
+    public Object testMethod(Object a) {
         return null;
     }
 }
