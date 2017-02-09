@@ -11,12 +11,13 @@ import java.io.FileNotFoundException;
 public class WeightedQuickUnion extends UnionFind {
 
     int tS[];
+
     public WeightedQuickUnion(int N) {
         super(N);
         tS = new int[N];
 
         for (int i = 0; i < N; i++) {
-            tS[i]=1;
+            tS[i] = 1;
         }
     }
 
@@ -36,15 +37,13 @@ public class WeightedQuickUnion extends UnionFind {
         io.println(uf.count() + " components");
 
         io.print(uf.id);
-
-
     }
 
     @Override
     protected int find(int p) {
 
-        while(id[p]!=p)
-            p=id[p];
+        while (id[p] != p)
+            p = id[p];
         return p;
     }
 
@@ -54,17 +53,16 @@ public class WeightedQuickUnion extends UnionFind {
         int rootP = find(p);
         int rootQ = find(q);
 
-        if(rootP!=rootQ){
+        if (rootP != rootQ) {
 
-            if(tS[rootP]<tS[rootQ]){
-                id[rootP]=rootQ;
-                tS[rootQ]+=tS[rootP];
+            if (tS[rootP] < tS[rootQ]) {
+                id[rootP] = rootQ;
+                tS[rootQ] += tS[rootP];
+            } else {
+                id[rootQ] = rootP;
+                tS[rootP] += tS[rootQ];
             }
-            else{
-                id[rootQ]=rootP;
-                tS[rootP]+=tS[rootQ];
-            }
-            count --;
+            count--;
         }
 
     }

@@ -37,7 +37,7 @@ public class QuickUnion extends UnionFind {
 
     @Override
     protected int find(int p) {
-        while(id[p]!=p){
+        while (id[p] != p) {
             p = id[p];
         }
 
@@ -49,10 +49,9 @@ public class QuickUnion extends UnionFind {
         int pRoot = find(p);
         int qRoot = find(q);
 
-        if(qRoot!=pRoot)
-        {
-            id[pRoot]=qRoot;
-            count --;
+        if (qRoot != pRoot) {
+            id[pRoot] = qRoot;
+            count--;
         }
     }
 }

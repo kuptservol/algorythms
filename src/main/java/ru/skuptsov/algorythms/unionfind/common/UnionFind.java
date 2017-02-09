@@ -3,7 +3,7 @@ package ru.skuptsov.algorythms.unionfind.common;
 /**
  * Created by Сергей on 02.02.2016.
  */
-public abstract class   UnionFind {
+public abstract class UnionFind {
 
     protected int[] id;
     protected int count;

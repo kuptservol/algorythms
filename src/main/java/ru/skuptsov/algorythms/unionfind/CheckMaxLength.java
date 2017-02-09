@@ -18,12 +18,12 @@ public class CheckMaxLength {
 
     public static void main(String[] args) {
 
-        int[] id = {0 ,0 ,0 ,0 ,2 ,0 ,4 ,0 ,2 ,0  } ;
+        int[] id = {0, 0, 0, 0, 2, 0, 4, 0, 2, 0};
         CheckMaxLength checkMaxLength = new CheckMaxLength(id);
 
         checkMaxLength.height = new int[id.length];
         for (int i = 0; i < id.length; i++) {
-            checkMaxLength.height[i]=0;
+            checkMaxLength.height[i] = 0;
         }
 
         for (int i = 0; i < id.length; i++) {
@@ -36,11 +36,11 @@ public class CheckMaxLength {
 
     }
 
-    void findRoot(int p){
+    void findRoot(int p) {
 
         int k = p;
-        int i =0;
-        while(id[p]!=p) {
+        int i = 0;
+        while (id[p] != p) {
             p = id[p];
             i++;
         }
@@ -48,14 +48,15 @@ public class CheckMaxLength {
         height[k] = i;
 
         for (int j = 0; j < id.length; j++) {
-            if(i!=0){
-            if (i/2-height[j]>0) {
-                System.out.println("alarm");
+            if (i != 0) {
+                if (i / 2 - height[j] > 0) {
+                    System.out.println("alarm");
+                }
             }
-        }}
+        }
 
-        if(i> maxHeight)
-            maxHeight =i;
+        if (i > maxHeight)
+            maxHeight = i;
 
     }
 
