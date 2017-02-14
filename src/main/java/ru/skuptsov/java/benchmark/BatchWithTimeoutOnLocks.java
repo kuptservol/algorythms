@@ -20,23 +20,8 @@ public class BatchWithTimeoutOnLocks extends BaseBatchWithTimeout {
 
     private final static Condition enoughElement = lock.newCondition();
 
-    private final static CountDownLatch latch = new CountDownLatch(EVENTS_COUNT);
-
-    public static void main(String[] args) throws InterruptedException {
-        batchWithTimeoutWithLocks();
-    }
-
-    public static void batchWithTimeoutWithLocks() throws InterruptedException {
-        doStart();
-
-        long time = System.nanoTime();
-        for (int i = 0; i < EVENTS_COUNT; i++) {
-            handlePushEvent(i);
-        }
-
-        latch.await();
-
-        System.out.println("Time locks : " + (System.nanoTime() - time) / (1000 * 1000) + " ms");
+    public BatchWithTimeoutOnLocks(CountDownLatch latch) {
+        doStart(latch);
     }
 
     public static void handlePushEvent(Integer pushEvent) {
@@ -52,7 +37,7 @@ public class BatchWithTimeoutOnLocks extends BaseBatchWithTimeout {
         }
     }
 
-    protected static void doStart() {
+    protected static void doStart(CountDownLatch latch) {
         for (int i = 0; i < N_THREADS; i++) {
             executor.execute(
                     new PushEventsQueueProcessorTask(
@@ -63,6 +48,11 @@ public class BatchWithTimeoutOnLocks extends BaseBatchWithTimeout {
                     )
             );
         }
+    }
+
+    @Override
+    protected void publishEvent(int i) {
+        handlePushEvent(i);
     }
 
     private static class PushEventsQueueProcessorTask implements Runnable {

@@ -14,19 +14,11 @@ import static java.util.concurrent.TimeUnit.MICROSECONDS;
  * @author Sergey Kuptsov
  * @since 20/01/2017
  */
-public class BatchWithTimeoutOnRxJava extends BaseBatchWithTimeout {
+public class BatchWithTimeoutBlockingQueuePollCustomObserverRx extends BaseBatchWithTimeout {
 
     private final static ForwardingQueue<Integer> eventsQueue = EvictingQueue.create(PUSH_QUEUE_MAX_SIZE);
 
-    public static void main(String[] args) throws InterruptedException {
-        long time = System.nanoTime();
-        batchWithTimeoutWithRX();
-        System.out.println("Time rx : " + (System.nanoTime() - time) / (1000 * 1000) + " ms");
-    }
-
-    public static void batchWithTimeoutWithRX() throws InterruptedException {
-        CountDownLatch latch = new CountDownLatch(EVENTS_COUNT);
-
+    public BatchWithTimeoutBlockingQueuePollCustomObserverRx(CountDownLatch latch) {
         Observable<List<Integer>> pushesToSend = Observable.<Integer>create(
                 observer -> {
                     Integer pushEvent = eventsQueue.poll();
@@ -52,11 +44,10 @@ public class BatchWithTimeoutOnRxJava extends BaseBatchWithTimeout {
                 );
 
         pushesToSend.subscribe();
+    }
 
-        for (int i = 0; i < EVENTS_COUNT; i++) {
-            eventsQueue.offer(i);
-        }
-
-        latch.await();
+    @Override
+    protected void publishEvent(int i) {
+        eventsQueue.offer(i);
     }
 }
