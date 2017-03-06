@@ -1,4 +1,4 @@
-package ru.skuptsov.puzzlers.job.interview.leetcode.tree.traversal;
+package ru.skuptsov.puzzlers.job.interview.leetcode.tree;
 
 import com.google.common.base.Objects;
 
