@@ -1,4 +1,4 @@
-package ru.skuptsov.puzzlers.job.interview.codility;
+package ru.skuptsov.puzzlers.job.interview.codility.toptal;
 
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -53,8 +53,8 @@ public class EquilibriumIndex {
 
         for (int i = 0; i < A.length; i++) {
 
-            Long directVal = i == 0 ? 0 : directIndex.get(i - 1);
-            Long reverseVal = i == A.length - 1 ? 0 : reverseIndex.get(i + 1);
+            Long directVal = i == 0 ? 0L : directIndex.get(i - 1);
+            Long reverseVal = i == A.length - 1 ? 0L : reverseIndex.get(i + 1);
 
             if (directVal.equals(reverseVal)) {
                 return i;
