@@ -2,7 +2,7 @@ package ru.skuptsov.puzzlers.adventofcode;
 
 import ru.skuptsov.algorythms.graph.travellingsalesmanproblem.GenericTCP;
 import ru.skuptsov.algorythms.graph.travellingsalesmanproblem.TravellingSalesmanProblem;
-import ru.skuptsov.puzzlers.MapUtils;
+import ru.skuptsov.puzzlers.Utils;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -31,9 +31,9 @@ public class SantaShortestGeneticPath {
 
       double distance = new Double(params[4]);
 
-      Map<String, Double> distanceMap = MapUtils.putIfAbsent(distances, cityFrom, new HashMap<>());
+      Map<String, Double> distanceMap = Utils.putIfAbsent(distances, cityFrom, new HashMap<>());
 
-      Map<String, Double> reverseDistanceMap = MapUtils.putIfAbsent(distances, cityTo, new HashMap<>());
+      Map<String, Double> reverseDistanceMap = Utils.putIfAbsent(distances, cityTo, new HashMap<>());
 
       distanceMap.put(cityTo, distance);
       reverseDistanceMap.put(cityFrom, distance);
