@@ -46,4 +46,5 @@ dependencies {
     compile group: 'org.mongojack', name: 'mongojack', version: '2.7.0'
     compile group: 'org.apache.zookeeper', name: 'zookeeper', version: '3.4.10'
     compile group: 'com.netflix.hystrix', name: 'hystrix-core', version: '1.5.12'
+    compile group: 'com.google.inject', name: 'guice', version: '3.0'
 }
