@@ -1,4 +1,4 @@
-package ru.skuptsov.guice;
+package ru.skuptsov.java.guice;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
@@ -20,7 +20,7 @@ import static java.lang.annotation.ElementType.METHOD;
 import static java.lang.annotation.ElementType.PARAMETER;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
-public class BillingService {
+public class SimpleDependencyInjectionsTest {
 
     @BindingAnnotation
     @Target({FIELD, PARAMETER, METHOD})
