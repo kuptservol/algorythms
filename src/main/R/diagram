@@ -1,0 +1,3 @@
+data <- read.csv("/Users/kuptservol/work/code/algorythms/src/main/resources/test.csv")
+with(data, plot(X, Y_logN, type = "l", col="blue"))
+with(data, lines(X, YOriginal, col="green"))
