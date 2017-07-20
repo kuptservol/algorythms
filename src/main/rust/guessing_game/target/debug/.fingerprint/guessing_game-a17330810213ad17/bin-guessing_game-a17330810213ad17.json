@@ -1,1 +1,22 @@
-{"rustc":4687527175041473038,"features":"[]","target":8876867925646724120,"profile":731176819336294830,"deps":[["rand v0.3.15",8979528929022812074]],"local":{"MtimeBased":[[1500155647,0],"/Users/kuptservol/work/code/algorythms/src/main/rust/guessing_game/target/debug/.fingerprint/guessing_game-a17330810213ad17/dep-bin-guessing_game-a17330810213ad17"]},"rustflags":[]}
+{
+  "rustc": 4687527175041473038,
+  "features": "[]",
+  "target": 8876867925646724120,
+  "profile": 731176819336294830,
+  "deps": [
+    [
+      "rand v0.3.15",
+      8979528929022812074
+    ]
+  ],
+  "local": {
+    "MtimeBased": [
+      [
+        1500155647,
+        0
+      ],
+      "/Users/kuptservol/work/code/algorythms/src/main/rust/guessing_game/target/debug/.fingerprint/guessing_game-a17330810213ad17/dep-bin-guessing_game-a17330810213ad17"
+    ]
+  },
+  "rustflags": []
+}
