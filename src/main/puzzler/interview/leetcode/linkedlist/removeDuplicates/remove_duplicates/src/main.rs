@@ -1,19 +1,23 @@
 fn main() {
-    println!("Hello, world! {}", x(5));
+
 }
 
-fn deleteDuplicates(head: &[ListNode]) {
+fn deleteDuplicates(head: ListNode) -> ListNode {
     let mut prev = head;
-    let mut next = head.next;
-}
+   // let mut next = prev.next;
 
-fn x(x: i32) -> i32 {
-    x
+   // while next !=null {
+    //    if prev.val == next.val {
+     //       prev.next = next.next;
+      //  }
+   // }
+
+    prev
 }
 
 struct ListNode {
     val: u32,
-    next: Box<ListNode>
+    next: &mut ListNode
 }
 /*
 
