@@ -11,7 +11,7 @@ import java.util.stream.Stream;
 import algorithm.graph.travellingsalesmanproblem.GenericTCP;
 import algorithm.graph.travellingsalesmanproblem.TravellingSalesmanProblem;
 
-import static puzzler.interview.leetcode.PuzzlerUtils.putIfAbsent;
+import static puzzler.leetcode.PuzzlerUtils.putIfAbsent;
 
 /**
  * @author Sergey Kuptsov
