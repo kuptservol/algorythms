@@ -10,7 +10,7 @@ import static com.google.common.collect.ImmutableList.of;
 /**
  * @author Sergey Kuptsov <kuptservol@yandex-team.ru>
  */
-public class WhenComplete {
+public class CompletetableFuture {
 
     public static void main(String[] args) {
         System.out.println("1");
@@ -125,6 +125,26 @@ public class WhenComplete {
         } catch (TimeoutException e) {
             System.out.println("Timeout Exception " + e.getMessage());
         }
+
+        System.out.println("7");
+        System.out.println("Do not miss every future exception");
+
+        of(
+                CompletableFuture.runAsync(new RunnableWithException()),
+                CompletableFuture.runAsync(new RunnableWithTimeout()))
+                .forEach(future -> {
+                            try {
+                                future.get(1, TimeUnit.SECONDS);
+                            } catch (InterruptedException e) {
+                                System.out.println("InterruptedException " + e.getMessage());
+                            } catch (ExecutionException e) {
+                                System.out.println("Execution Exception " + e.getMessage());
+                            } catch (TimeoutException e) {
+                                System.out.println("Timeout Exception " + e.getMessage());
+                            }
+                        }
+                );
+
     }
 
     static class RunnableWithTimeout implements Runnable {
@@ -143,7 +163,7 @@ public class WhenComplete {
 
         @Override
         public void run() {
-            throw new RuntimeException("Exception");
+            throw new RuntimeException("RunnableWithException");
         }
     }
 
