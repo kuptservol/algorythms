@@ -2,22 +2,13 @@ fn main() {
 
 }
 
-fn deleteDuplicates(head: ListNode) -> ListNode {
-    let mut prev = head;
-   // let mut next = prev.next;
-
-   // while next !=null {
-    //    if prev.val == next.val {
-     //       prev.next = next.next;
-      //  }
-   // }
-
-    prev
+fn deleteDuplicates(head: &mut ListNode) {
+    let &mut prev = head;
 }
 
-struct ListNode {
+struct ListNode<'a> {
     val: u32,
-    next: &mut ListNode
+    next: &'a mut ListNode<'a>,
 }
 /*
 
