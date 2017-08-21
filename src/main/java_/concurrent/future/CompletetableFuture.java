@@ -1,20 +1,14 @@
 package java_.concurrent.future;
 
+import java.util.concurrent.Callable;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
-
-import com.google.common.collect.ImmutableList;
-
-import static com.google.common.collect.ImmutableList.of;
 
 /**
  * @author Sergey Kuptsov <kuptservol@yandex-team.ru>
  */
 public class CompletetableFuture {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 //        System.out.println("1");
 //        try {
 //            CompletableFuture.allOf(of(
@@ -128,24 +122,41 @@ public class CompletetableFuture {
 //            System.out.println("Timeout Exception " + e.getMessage());
 //        }
 
-        System.out.println("7");
+//        System.out.println("7");
+//        System.out.println("Do not miss every future exception");
+//
+//        of(
+//                CompletableFuture.runAsync(new RunnableWithTimeout()),
+//                CompletableFuture.runAsync(new RunnableWithException())
+//        ).forEach(future -> {
+//                    try {
+//                        future.get(3, TimeUnit.SECONDS);
+//                            } catch (InterruptedException e) {
+//                                System.out.println("InterruptedException " + e.getMessage());
+//                            } catch (ExecutionException e) {
+//                                System.out.println("Execution Exception " + e.getMessage());
+//                            } catch (TimeoutException e) {
+//                                System.out.println("Timeout Exception " + e.getMessage());
+//                            }
+//                        }
+//                );
+
+        System.out.println("8");
         System.out.println("Do not miss every future exception");
 
-        of(
-                CompletableFuture.runAsync(new RunnableWithTimeout()),
-                CompletableFuture.runAsync(new RunnableWithException())
-        ).forEach(future -> {
-                    try {
-                        future.get(3, TimeUnit.SECONDS);
-                            } catch (InterruptedException e) {
-                                System.out.println("InterruptedException " + e.getMessage());
-                            } catch (ExecutionException e) {
+        CompletableFuture<String> stringCompletableFuture = CompletableFuture.supplyAsync(() -> new CallableWithException().call())
+                .whenComplete((r, e) -> {
+                    if (e != null) {
                                 System.out.println("Execution Exception " + e.getMessage());
-                            } catch (TimeoutException e) {
-                                System.out.println("Timeout Exception " + e.getMessage());
                             }
                         }
                 );
+
+
+        /// wait for all futures - simulate program running
+        Thread.sleep(5000);
+
+        System.out.println(stringCompletableFuture);
     }
 
     static class RunnableWithTimeout implements Runnable {
@@ -165,6 +176,25 @@ public class CompletetableFuture {
 
         @Override
         public void run() {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("Running RunnableWithException");
+            throw new RuntimeException("RunnableWithException");
+        }
+    }
+
+    static class CallableWithException implements Callable {
+
+        @Override
+        public String call() {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             System.out.println("Running RunnableWithException");
             throw new RuntimeException("RunnableWithException");
         }
