@@ -1,80 +1,45 @@
 package java_.concurrent.queue;
 
+import java.util.LinkedList;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.locks.Condition;
-import java.util.concurrent.locks.ReentrantLock;
-
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
  * @author Sergey Kuptsov <kuptservol@yandex-team.ru>
  */
-public class ArrayBoundedBlockingQueueOnLock<T> {
+public class LinkedBlockingQueueOneSyncBlock {
 
-    private final int[] queue;
-    int count = 0;
+    private final LinkedList<Integer> queue = new LinkedList<>();
     private final int size;
-    private final ReentrantLock lock = new ReentrantLock();
-    Condition notEmpty = lock.newCondition();
-    Condition notFull = lock.newCondition();
-    int putIndex = -1;
-    int getIndex = -1;
 
-    public ArrayBoundedBlockingQueueOnLock(int size) {
-        this.queue = new int[size];
+    public LinkedBlockingQueueOneSyncBlock(int size) {
         this.size = size;
     }
 
     public void add(int value) throws InterruptedException {
+        synchronized (queue) {
+            while (queue.size() == size)
+                queue.wait();
 
-        lock.lock();
-
-        try {
-            while (count == size)
-                notFull.await();
-
-            if (++putIndex == queue.length) {
-                putIndex = 0;
-            }
-
-            queue[putIndex] = value;
-            count++;
-            notEmpty.signal();
-        } finally {
-            lock.unlock();
+            queue.addFirst(value);
+            queue.notify();
         }
     }
 
     public int poll() throws InterruptedException {
-        lock.lock();
-
         int val;
-        try {
-            if (count == 0)
-                notEmpty.await();
-
-            if (++getIndex == queue.length) {
-                getIndex = 0;
+        synchronized (queue) {
+            if (queue.size() == 0) {
+                queue.wait();
             }
-
-            val = queue[getIndex];
-            count--;
-            notFull.signal();
-        } finally {
-            lock.unlock();
+            val = queue.pollLast();
+            queue.notify();
         }
 
         return val;
     }
 
-    public int poll(TimeUnit timeUnit, int time) {
-        throw new NotImplementedException();
-    }
-
     public static void main(String[] args) throws InterruptedException {
-        ArrayBoundedBlockingQueueOnLock queue = new ArrayBoundedBlockingQueueOnLock(2);
-
+        LinkedBlockingQueueOneSyncBlock queue = new LinkedBlockingQueueOneSyncBlock(2);
 
         queue.add(1);
         queue.add(2);
