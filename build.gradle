@@ -11,12 +11,11 @@ buildscript {
         classpath "gradle.plugin.me.champeau.gradle:jmh-gradle-plugin:0.3.0"
     }
 }
-
 apply plugin: 'groovy'
 apply plugin: 'java'
 apply plugin: 'java-gradle-plugin'
 apply plugin: "me.champeau.gradle.jmh"
-//apply plugin: 'jcstress'
+apply plugin: 'jcstress'
 apply plugin: "io.franzbecker.gradle-lombok"
 
 repositories {
@@ -41,7 +40,7 @@ dependencies {
     compile "org.projectlombok:lombok:1.16.4"
     compile "org.testng:testng:6.9.10"
     compile "io.reactivex:rxjava:1.2.5"
-    compile 'org.openjdk.jcstress:jcstress-core:0.2'
+    //compile 'org.openjdk.jcstress:jcstress-core:0.2'
     compile group: 'io.netty', name: 'netty-all', version: '4.1.6.Final'
     compile group: 'org.mongodb', name: 'mongo-java-driver', version: '3.4.2'
     compile group: 'org.mongojack', name: 'mongojack', version: '2.7.0'
