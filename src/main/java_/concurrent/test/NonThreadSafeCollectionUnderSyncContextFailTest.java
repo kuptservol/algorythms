@@ -14,25 +14,21 @@ import org.openjdk.jcstress.infra.results.IntResult1;
  * @author Sergey Kuptsov <kuptservol@yandex-team.ru>
  */
 @JCStressTest
-@Outcome(id = "1", expect = Expect.ACCEPTABLE_INTERESTING, desc = "One update lost: atomicity failure.")
+@Outcome(id = "1", expect = Expect.FORBIDDEN, desc = "One update lost: atomicity failure.")
 @Outcome(id = "2", expect = Expect.ACCEPTABLE, desc = "Actors updated independently.")
 @State
-public class NonThreadSafeCollectionUnderSyncContextTest {
+public class NonThreadSafeCollectionUnderSyncContextFailTest {
 
     ArrayList<Integer> list = new ArrayList<>();
 
     @Actor
     public void actor1() {
-//        synchronized (this) {
         list.add(1);
-//        }
     }
 
     @Actor
     public void actor2() {
-//        synchronized (this) {
         list.add(1);
-//        }
     }
 
     @Arbiter
