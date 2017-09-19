@@ -15,12 +15,11 @@ import java.util.concurrent.Future;
 public class AsyncFileChannel {
 
     public static void main(String[] args) throws IOException, ExecutionException, InterruptedException {
-        Path filePath = Paths.get("/Users/install/work/code/algorythms/src/main/resources/deliveredOnce.txt");
+        Path filePath = Paths.get("/Users/kuptservol/work/code/algorythms/src/main/resources/deliveredOnce.txt");
 
         AsynchronousFileChannel fileChannel = AsynchronousFileChannel.open(filePath);
 
-        ByteBuffer buffer = ByteBuffer.allocate(1);
-
+        ByteBuffer buffer = ByteBuffer.allocate(5);
 
         long position = 0;
         Future<Integer> future = fileChannel.read(buffer, position);
@@ -31,7 +30,7 @@ public class AsyncFileChannel {
             byte[] data = new byte[buffer.limit()];
             buffer.get(data);
 
-            System.out.println(new String(data));
+            System.out.print(new String(data));
 
             buffer.clear();
 
