@@ -41,6 +41,7 @@ dependencies {
     compile "org.testng:testng:6.9.10"
     compile "io.reactivex:rxjava:1.2.5"
     //compile 'org.openjdk.jcstress:jcstress-core:0.2'
+    compile group: 'org.reactivestreams', name: 'reactive-streams', version: '1.0.1'
     compile group: 'io.netty', name: 'netty-all', version: '4.1.6.Final'
     compile group: 'org.mongodb', name: 'mongo-java-driver', version: '3.4.2'
     compile group: 'org.mongojack', name: 'mongojack', version: '2.7.0'

@@ -1,4 +1,4 @@
-package java_.concurrent.test;
+package java_.concurrent.jcstresstest;
 
 import java.util.ArrayList;
 

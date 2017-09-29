@@ -1,4 +1,4 @@
-package java_.rx;
+package java_.javarx;
 
 import rx.Observable;
 import rx.Observer;

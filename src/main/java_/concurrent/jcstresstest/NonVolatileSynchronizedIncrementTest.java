@@ -1,4 +1,4 @@
-package java_.concurrent.test;
+package java_.concurrent.jcstresstest;
 
 import org.openjdk.jcstress.annotations.Actor;
 import org.openjdk.jcstress.annotations.Arbiter;
