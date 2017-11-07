@@ -1,5 +1,6 @@
 fn main() {
-        ownership_reference();
+    ownership_move();
+    //ownership_reference();
 }
 
 fn ownership_move_on_heap() {
@@ -14,7 +15,6 @@ fn ownership_move() {
 // not allowed cause s1 has been moved
  //println!("Hello, {}!", s2);
 }
-
 
 fn ownership_on_stack() {
         let s1 = "world";
