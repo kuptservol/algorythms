@@ -1,6 +1,7 @@
 package puzzler.leetcode.tree;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class TreeNode implements PrintableNode {
@@ -40,6 +41,41 @@ public class TreeNode implements PrintableNode {
 
     public static TreeNode of(int val, TreeNode left, TreeNode right) {
         return new TreeNode(val, left, right);
+    }
+
+    public static TreeNode of(Integer... args) {
+        LinkedList<TreeNode> bfs = new LinkedList<>();
+        TreeNode root = new TreeNode(args[0]);
+        bfs.addFirst(root);
+        for (int i = 1; i < args.length; i++) {
+            TreeNode next = bfs.pollFirst();
+            Integer leftVal = args[i];
+            TreeNode left = null;
+            TreeNode right = null;
+            if (leftVal != null) {
+                left = new TreeNode(leftVal);
+            }
+
+            if (i + 1 != args.length) {
+                i++;
+                Integer rightVal = args[i];
+                if (rightVal != null) {
+                    right = new TreeNode(rightVal);
+                }
+            }
+
+            if (left != null) {
+                bfs.add(left);
+                next.left = left;
+            }
+
+            if (right != null) {
+                bfs.add(right);
+                next.right = right;
+            }
+        }
+
+        return root;
     }
 
     public static TreeNode of(int val) {
