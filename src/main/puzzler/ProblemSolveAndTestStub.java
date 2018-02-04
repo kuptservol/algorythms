@@ -7,7 +7,6 @@ import static org.testng.Assert.assertEquals;
 
 /**
  * @author Sergey Kuptsov
- * @since 11/10/2016
  */
 public class ProblemSolveAndTestStub {
 
