@@ -1,0 +1,2 @@
+date <- read.csv("/Users/kuptservol/work/code/startrek-clone/startrek/пкфзр.csv")
+with(date, plot(X, Y, type = "l"))
