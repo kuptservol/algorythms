@@ -2,6 +2,7 @@ package puzzler.leetcode;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * @author Sergey Kuptsov
@@ -21,5 +22,13 @@ public class PuzzlerUtils {
 
     public static int[] toIntArray(List<Integer> intList) {
         return intList.stream().mapToInt(Integer::intValue).toArray();
+    }
+
+    public static String[] A(List<String> stringList) {
+        return stringList.toArray(new String[1]);
+    }
+
+    public static String[] A(Set<String> stringList) {
+        return stringList.toArray(new String[1]);
     }
 }
