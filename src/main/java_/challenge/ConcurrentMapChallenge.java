@@ -4,7 +4,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 /**
- * @author Sergey Kuptsov <kuptservol@yandex-team.ru>
+ * @author Sergey Kuptsov
  */
 public class ConcurrentMapChallenge {
 

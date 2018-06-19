@@ -6,7 +6,7 @@ import com.netflix.hystrix.HystrixCommandProperties;
 import org.testng.annotations.Test;
 
 /**
- * @author Sergey Kuptsov <kuptservol@yandex-team.ru>
+ * @author Sergey Kuptsov
  */
 public class CommandTimeoutOverNetwork extends HystrixCommand<String> {
 

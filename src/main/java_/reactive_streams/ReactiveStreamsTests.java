@@ -9,7 +9,7 @@ import reactor.core.publisher.Mono;
 import reactor.core.scheduler.Schedulers;
 
 /**
- * @author Sergey Kuptsov <kuptservol@yandex-team.ru>
+ * @author Sergey Kuptsov
  */
 public class ReactiveStreamsTests {
 

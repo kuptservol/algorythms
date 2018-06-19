@@ -15,7 +15,7 @@ import static java.util.concurrent.TimeUnit.MICROSECONDS;
 import static org.openjdk.jmh.annotations.Mode.AverageTime;
 
 /**
- * @author Sergey Kuptsov <kuptservol@yandex-team.ru>
+ * @author Sergey Kuptsov
  *         <p>
  *         Benchmark                         Mode  Cnt     Score     Error  Units
  *         LinkedListVsArrayList.arrayList   avgt   10   714,407 ± 482,997  us/op

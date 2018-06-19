@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * @author Sergey Kuptsov <kuptservol@yandex-team.ru>
+ * @author Sergey Kuptsov
  */
 public class ParallelStreamSerialTerminal {
 

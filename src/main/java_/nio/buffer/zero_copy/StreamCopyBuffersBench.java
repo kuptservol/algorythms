@@ -23,7 +23,7 @@ import static java.util.concurrent.TimeUnit.MICROSECONDS;
 import static org.openjdk.jmh.annotations.Mode.AverageTime;
 
 /**
- * @author Sergey Kuptsov <kuptservol@yandex-team.ru>
+ * @author Sergey Kuptsov
  * 4 Mb file
  * Benchmark                                                      Mode  Cnt        Score         Error  Units
 StreamCopyBuffersBench.copyFileWithBufferedReaderBuffer        avgt   10    59066,319 ±   41948,307  us/op

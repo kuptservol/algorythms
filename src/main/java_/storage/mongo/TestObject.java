@@ -8,7 +8,7 @@ import lombok.ToString;
 import org.bson.types.ObjectId;
 
 /**
- * @author Sergey Kuptsov <kuptservol@yandex-team.ru>
+ * @author Sergey Kuptsov
  */
 @Builder
 @AllArgsConstructor

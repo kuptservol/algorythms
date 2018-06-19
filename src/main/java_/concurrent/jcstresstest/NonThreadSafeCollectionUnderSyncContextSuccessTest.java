@@ -11,7 +11,7 @@ import org.openjdk.jcstress.annotations.State;
 import org.openjdk.jcstress.infra.results.IntResult1;
 
 /**
- * @author Sergey Kuptsov <kuptservol@yandex-team.ru>
+ * @author Sergey Kuptsov
  */
 @JCStressTest
 @Outcome(id = "1", expect = Expect.FORBIDDEN, desc = "One update lost: atomicity failure.")

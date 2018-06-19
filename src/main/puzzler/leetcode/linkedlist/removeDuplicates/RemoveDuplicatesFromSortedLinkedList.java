@@ -7,7 +7,7 @@ import static puzzler.leetcode.linkedlist.removeDuplicates.RemoveDuplicatesFromS
 import static org.testng.Assert.assertEquals;
 
 /**
- * @author Sergey Kuptsov <kuptservol@yandex-team.ru>
+ * @author Sergey Kuptsov
  *         <p>
  *         Given 1->1->2, return 1->2.
  *         Given 1->1->2->3->3, return 1->2->3.

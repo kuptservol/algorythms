@@ -3,7 +3,7 @@ package puzzler.codingame;
 import java.math.BigDecimal;
 
 /**
- * @author Sergey Kuptsov <kuptservol@yandex-team.ru>
+ * @author Sergey Kuptsov
  */
 public class Test {
 

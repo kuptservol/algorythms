@@ -8,7 +8,7 @@ import org.apache.zookeeper.ZooKeeper;
 import org.testng.annotations.Test;
 
 /**
- * @author Sergey Kuptsov <kuptservol@yandex-team.ru>
+ * @author Sergey Kuptsov
  */
 public class ZooKeeperClientTest {
 
