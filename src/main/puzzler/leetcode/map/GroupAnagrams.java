@@ -13,7 +13,7 @@ import org.testng.annotations.Test;
 
 import static com.google.common.collect.ImmutableSet.of;
 import static org.testng.Assert.assertEquals;
-import static puzzler.leetcode.PuzzlerUtils.A;
+import static puzzler.leetcode.PuzzlerUtils.strA;
 
 /**
  * @author Sergey Kuptsov
@@ -38,7 +38,7 @@ public class GroupAnagrams {
     @DataProvider
     public Object[][] testData() {
         return new Object[][]{
-                {A(of("eat", "tea", "tan", "ate", "nat", "bat")), of(of("ate", "eat", "tea"), of("nat", "tan"), of("bat"))}
+                {strA(of("eat", "tea", "tan", "ate", "nat", "bat")), of(of("ate", "eat", "tea"), of("nat", "tan"), of("bat"))}
         };
     }
 

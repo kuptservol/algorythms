@@ -25,7 +25,7 @@ public class PuzzlerUtils {
         return intList.stream().mapToInt(Integer::intValue).toArray();
     }
 
-    public static String[] A(List<String> stringList) {
+    public static String[] strA(List<String> stringList) {
         return stringList.toArray(new String[1]);
     }
 
@@ -37,7 +37,11 @@ public class PuzzlerUtils {
         return Arrays.stream(ints).mapToInt(Integer::intValue).toArray();
     }
 
-    public static String[] A(Set<String> stringList) {
+    public static String[] strA(Set<String> stringList) {
         return stringList.toArray(new String[1]);
+    }
+
+    public static String[] strA(String... strings) {
+        return strings;
     }
 }
