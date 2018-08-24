@@ -38,6 +38,9 @@ public class ListNode {
 
     @Override
     public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
         return obj.toString().equals(toString());
     }
 }
