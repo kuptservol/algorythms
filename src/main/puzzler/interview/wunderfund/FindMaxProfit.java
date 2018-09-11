@@ -12,7 +12,6 @@ public class FindMaxProfit {
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(FindMaxProfit.class.getResourceAsStream("/wunderFund_data.csv")));
 
-        int profit = 0;
         String line;
         List<Integer> docPrices = new ArrayList<>();
         while ((line = reader.readLine()) != null) {
@@ -20,34 +19,39 @@ public class FindMaxProfit {
             docPrices.add(Integer.valueOf(split[1]));
         }
 
-        for (int i = 0; i < docPrices.size(); i++) {
-            Integer currCost = docPrices.get(i);
-            if (currCost == -1) {
-                continue;
-            }
+        System.out.println(maxProfit(docPrices.size(), docPrices));
+    }
 
-            Integer maxCost = Integer.MAX_VALUE;
-            Integer maxJ = null;
-            int j = i + 1;
-            for (; j < docPrices.size(); j++) {
-                Integer priceCand = docPrices.get(j);
-                if (priceCand == -1) {
+    public static int maxProfit(int k, List<Integer> prices) {
+        int[][] transDays = new int[k + 1][prices.size()];
+
+        for (int trans = 0; trans <= k; trans++) {
+            for (int day = 0; day < prices.size(); day++) {
+
+                // we do not have transactions - no profit possible
+                if (trans == 0) {
+                    transDays[trans][day] = 0;
                     continue;
                 }
-                if (priceCand > currCost && priceCand < maxCost) {
-                    maxCost = Math.min(maxCost, priceCand);
-                    maxJ = j;
-                }
-            }
 
-            if (maxCost != Integer.MAX_VALUE) {
-                profit += maxCost - currCost;
-                docPrices.set(maxJ, -1);
-                docPrices.set(i, maxJ);
+                // it's first day - can only by - not sell - no profit
+                if (day == 0) {
+                    transDays[trans][day] = 0;
+                    continue;
+                }
+
+                //do nothing
+                int maxProfit = transDays[trans][day - 1];
+
+                // max cell diff + max on previous transaction on day before cell
+                for (int m = 0; m <= day - 1; m++) {
+                    maxProfit = Math.max(maxProfit, prices.get(day) - prices.get(m) + transDays[trans - 1][m]);
+                }
+
+                transDays[trans][day] = maxProfit;
             }
         }
 
-        System.out.println(docPrices);
-        System.out.println(profit);
+        return transDays[k][prices.size() - 1];
     }
 }
