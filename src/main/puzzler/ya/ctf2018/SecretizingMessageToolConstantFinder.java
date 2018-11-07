@@ -21,6 +21,7 @@ public class SecretizingMessageToolConstantFinder {
         long X;
         long NEXT_X;
 
+
         long seed_iteration = (known_key_id - 1) * 4 + 1;
 
         for (long SEED = 1; SEED < MAX_SEED; SEED++) {
