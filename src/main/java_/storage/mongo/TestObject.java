@@ -11,7 +11,6 @@ import org.bson.types.ObjectId;
  * @author Sergey Kuptsov
  */
 @Builder
-@AllArgsConstructor
 @ToString
 public class TestObject {
     @Id
