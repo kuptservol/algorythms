@@ -68,7 +68,6 @@ public class CourseSchedule {
                 visitedNodes.add(nextV);
             }
 
-            System.out.println(nextV);
             for (Integer linkedV : graph.adjList.get(nextV)) {
                 traversalQueue.add(linkedV);
             }
