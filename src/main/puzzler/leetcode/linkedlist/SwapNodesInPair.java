@@ -1,4 +1,4 @@
-package puzzler;
+package puzzler.leetcode.linkedlist;
 
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
