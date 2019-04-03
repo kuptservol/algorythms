@@ -57,6 +57,7 @@ public class MergeIntervals {
         }
 
         assertEquals(getOverlappedIntervalsWithTree(intervals), r.asRanges());
+        assertEquals(getOverlappedIntervalsWithList(intervals), r.asRanges());
     }
 
     /*
@@ -66,6 +67,7 @@ public class MergeIntervals {
     private Set<Range<Integer>> getOverlappedIntervalsWithList(List<List<Integer>> intervals) {
         Set<Range<Integer>> set = new HashSet<>();
 
+        // sort by left border
         List<IntRange> sortedRanges = intervals.stream()
                 .map(interval -> new IntRange(interval.get(0), interval.get(1)))
                 .sorted((o1, o2) -> {
