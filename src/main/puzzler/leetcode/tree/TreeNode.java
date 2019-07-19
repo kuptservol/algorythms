@@ -97,6 +97,11 @@ public class TreeNode implements PrintableNode {
         return val + "";
     }
 
+    @Override
+    public boolean equals(Object node) {
+        return ((TreeNode) node).val == val;
+    }
+
     public static void print(PrintableNode root)
     {
         List<List<String>> lines = new ArrayList<>();
@@ -202,5 +207,13 @@ public class TreeNode implements PrintableNode {
 
             perpiece /= 2;
         }
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("TreeNode{");
+        sb.append("val=").append(val);
+        sb.append('}');
+        return sb.toString();
     }
 }
