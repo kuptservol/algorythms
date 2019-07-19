@@ -32,6 +32,7 @@ public class LowestCommonAncestorOfaBinarySearchTree {
     public void test(TreeNode root, TreeNode p, TreeNode q, TreeNode res) {
         TreeNode.print(root);
         assertEquals(lowestCommonAncestor(root, p, q), res);
+        assertEquals(lowestCommonAncestorMoreTricky(root, p, q), res);
     }
 
 
@@ -77,5 +78,24 @@ public class LowestCommonAncestorOfaBinarySearchTree {
         }
 
         return lCANode;
+    }
+
+    /**
+     * if the way we are BST are start to divide - thi is our target lCANode
+     * PASSED!
+     */
+    public TreeNode lowestCommonAncestorMoreTricky(TreeNode root, TreeNode p, TreeNode q) {
+
+        TreeNode next = root;
+        while (true) {
+
+            if (p.val < next.val && q.val < next.val) {
+                next = next.left;
+            } else if (p.val > next.val && q.val > next.val) {
+                next = next.right;
+            } else {
+                return next;
+            }
+        }
     }
 }
