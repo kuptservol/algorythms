@@ -5,8 +5,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Iterator;
 
-import javafx.util.Pair;
-
 /**
  * @author Sergey Kuptsov
  * @since 05/04/2016

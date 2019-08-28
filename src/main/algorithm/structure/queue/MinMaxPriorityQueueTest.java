@@ -3,7 +3,7 @@ package algorithm.structure.queue;
 import java.util.Random;
 
 import com.google.common.collect.MinMaxPriorityQueue;
-import jdk.nashorn.internal.ir.debug.ObjectSizeCalculator;
+//import jdk.nashorn.internal.ir.debug.ObjectSizeCalculator;
 
 /**
  * @author Sergey Kuptsov
@@ -20,7 +20,7 @@ public class MinMaxPriorityQueueTest {
             massive[i] = random.nextInt(1000000);
         }
 
-        System.out.println(ObjectSizeCalculator.getObjectSize(new Object()));
+//        System.out.println(ObjectSizeCalculator.getObjectSize(new Object()));
 
         MinMaxPriorityQueue<Integer> minMaxPriorityQueue = MinMaxPriorityQueue
                 .maximumSize(1000)
