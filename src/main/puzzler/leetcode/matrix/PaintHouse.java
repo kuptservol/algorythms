@@ -33,6 +33,8 @@ public class PaintHouse {
 
     /**
      * Simply find min on each level in-place
+     * O(N_houses*K)
+     * Passes
      */
     public int minCostSimpleDynamic(int[][] costs) {
         if (costs.length == 0) {
@@ -54,7 +56,7 @@ public class PaintHouse {
     }
 
     /**
-     * First DFS attempt - just walk all pathes one direction - O(N_houses)
+     * First DFS attempt - just walk all pathes one direction - O(N_houses*K^2)
      * Time Limit Exceeded
      */
     public int minCostDFS(int[][] costs) {
