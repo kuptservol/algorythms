@@ -2,17 +2,14 @@ package puzzler.leetcode.graph;
 
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
-import java.util.Queue;
 import java.util.Set;
 
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import static com.google.common.collect.ImmutableList.of;
 import static org.testng.Assert.assertEquals;
+import static puzzler.leetcode.PuzzlerUtils.intA;
 
 /**
  * @author Sergey Kuptsov
@@ -32,68 +29,69 @@ import static org.testng.Assert.assertEquals;
  * So it is impossible.
  * <p>
  * <p>
- * Solution : detect algorithm.graph cycles
  */
 public class CourseSchedule {
 
     @DataProvider
     public Object[][] testData() {
         return new Object[][]{
-                {of(of(0, 1, 2), of(1, 3, 4), of(2, 5, 6)), true},
-                {of(of(0, 1, 2), of(1, 3, 4), of(2, 5, 6), of(3, 6)), false},
-                {of(of(2), of(1, 0)), true},
-                {of(of(0, 1), of(1, 0)), false},
-                {of(of(0, 5, 4, 3, 2, 1), of(5, 0)), false},
+                {intA(intA(0, 1)), 2, true},
+                {intA(intA(0, 1), intA(1, 0)), 2, false},
+                {intA(intA(0, 1), intA(0, 2), intA(1, 2)), 3, true}
         };
     }
 
     @Test(dataProvider = "testData")
-    public void test(List<List<Integer>> courses, boolean isPossible) {
-        assertEquals(hasCycle(buildGraph(courses)), isPossible);
+    public void test(int[][] courses, int numCourses, boolean isPossible) {
+        assertEquals(canFinish(numCourses, courses), isPossible);
     }
 
-    private boolean hasCycle(Graph graph) {
-        Queue<Integer> traversalQueue = new LinkedList<>();
+    /**
+     * idea os to check if graph contains cycle
+     */
+    public boolean canFinish(int numCourses, int[][] prerequisites) {
+        boolean result = true;
 
-        Integer startV = graph.adjList.keySet().toArray(new Integer[0])[0];
-        Set<Integer> visitedNodes = new HashSet<>();
+        if (numCourses == 0 || prerequisites.length == 0) {
+            return true;
+        }
 
-        traversalQueue.add(startV);
+        //build graph
+        Map<Integer, Set<Integer>> graph = new HashMap<>();
 
-        while (!traversalQueue.isEmpty()) {
-            Integer nextV = traversalQueue.poll();
-            if (visitedNodes.contains(nextV)) {
-                return false;
-            } else {
-                visitedNodes.add(nextV);
-            }
+        for (int i = 0; i < prerequisites.length; i++) {
+            graph.computeIfAbsent(prerequisites[i][1], v -> new HashSet<>()).add(prerequisites[i][0]);
+        }
 
-            for (Integer linkedV : graph.adjList.get(nextV)) {
-                traversalQueue.add(linkedV);
+        Set<Integer> visited = new HashSet<>();
+        Set<Integer> onCurrStack = new HashSet<>();
+        for (Integer startNode : graph.keySet()) {
+            if (!visited.contains(startNode)) {
+                if (!dfs(graph, visited, startNode, onCurrStack)) {
+                    return false;
+                }
             }
         }
+
+        return result;
+    }
+
+    private boolean dfs(Map<Integer, Set<Integer>> graph, Set<Integer> visited, Integer node, Set<Integer> onCurrStack) {
+        onCurrStack.add(node);
+        visited.add(node);
+
+        for (Integer adj : graph.getOrDefault(node, new HashSet<>())) {
+            if (!visited.contains(adj)) {
+                if (!dfs(graph, visited, adj, onCurrStack)) return false;
+            } else {
+                if (onCurrStack.contains(adj)) {
+                    return false;
+                }
+            }
+        }
+
+        onCurrStack.remove(node);
 
         return true;
-    }
-
-    private Graph buildGraph(List<List<Integer>> courses) {
-        Graph graph = new Graph();
-
-        for (List<Integer> targetCourses : courses) {
-            Integer v = targetCourses.get(0);
-            graph.adjList.putIfAbsent(v, new HashSet<>());
-
-            for (int i = 1; i < targetCourses.size(); i++) {
-                Integer linkedV = targetCourses.get((i));
-                graph.adjList.putIfAbsent(linkedV, new HashSet<>());
-                graph.adjList.get(v).add(linkedV);
-            }
-        }
-
-        return graph;
-    }
-
-    private static class Graph {
-        Map<Integer, Set<Integer>> adjList = new HashMap<>();
     }
 }
