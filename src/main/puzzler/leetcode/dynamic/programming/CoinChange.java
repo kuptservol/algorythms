@@ -1,4 +1,4 @@
-package puzzler.leetcode.all;
+package puzzler.leetcode.dynamic.programming;
 
 import java.util.HashMap;
 import java.util.Map;
